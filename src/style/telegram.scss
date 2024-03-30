@@ -187,8 +187,12 @@
                                                 // 用户名
                                                 & .main-info {
                                                     color: var(--tg-contact-list-item-unselected-title-font-color);
-                                                    &.vip-name {
+                                                    // 会员彩色用户名
+                                                    &.vip-name,
+                                                    & .text-ellipsis[style*="vip"] {
                                                         color: var(--tg-vip-name-color) !important;
+                                                        text-shadow: none !important;
+                                                        filter: none !important;
                                                     }
                                                 }
 
@@ -394,52 +398,24 @@
             }
         }
 
-        //& .group-box__wrapper {
-        //    background-color: white;
-        //    // 群公告、群成员
-        //    & .group-box {
-        //        // 群公告
-        //        & .group-notice {
-        //            // 公告标题
-        //            & .title {
-        //            }
-        //
-        //            // 公告内容
-        //            & .content {
-        //            }
-        //        }
-        //
-        //        // 群成员
-        //        & .group-member .group-member__main {
-        //            & .group-member-list .viewport-list {
-        //                // 成员列表
-        //                & .viewport-list__inner {
-        //                    // 成员
-        //                    & .group-user .group-user__content {
-        //                        & .group-user__avatar {
-        //                            // 头像
-        //                        }
-        //
-        //                        & .group-user__name {
-        //                            // 昵称
-        //                        }
-        //
-        //                        // 标签（群主、管理员）
-        //                        & .group-user__role {
-        //                            &:not(.primary) {
-        //                                // 管理员
-        //                            }
-        //
-        //                            &.primary {
-        //                                // 群主
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        & .group-box__wrapper {
+            // 群成员
+            & .group-member__main {
+                & .group-member-list {
+                    & .group-user__content {
+                        // 隐藏等级，保留自定义tag
+                        & .q-tag {
+                            & .level {
+                                display: none;
+                            }
+                            &.q-tag--grey {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -449,11 +425,17 @@
         background-color: var(--tg-panel-header-bg-color) !important;
         // 标题
         & .panel-header__title {
-            & #chatHeaderContactName {
+            & #chatHeaderContactName,
+            & .chat-header__contact-name {
                 // 群名 or 用户名
                 color: var(--tg-panel-header-title-color);
                 font-size: var(--tg-panel-header-title-font-size);
                 font-weight: bold;
+                & .text-ellipsis[style*="vip"] {
+                    color: var(--tg-vip-name-color) !important;
+                    text-shadow: none !important;
+                    filter: none !important;
+                }
             }
 
             & #chatHeaderMembersCount {
@@ -877,6 +859,16 @@
             & .text-ellipsis {
                 text-shadow: 0 0 5px #00000066;
                 overflow: visible !important;
+            }
+
+            & .q-tag {
+                & .level {
+                    display: none;
+                }
+                &.q-tag--grey,
+                &.q-tag--purple {
+                    display: none;
+                }
             }
         }
 
