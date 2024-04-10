@@ -189,7 +189,7 @@
                                                     color: var(--tg-contact-list-item-unselected-title-font-color);
                                                     // 会员彩色用户名
                                                     &.vip-name,
-                                                    & .text-ellipsis[style*="vip"] {
+                                                    & .text-ellipsis[style*="color"] {
                                                         color: var(--tg-vip-name-color) !important;
                                                         text-shadow: none !important;
                                                         filter: none !important;
@@ -431,7 +431,7 @@
                 color: var(--tg-panel-header-title-color);
                 font-size: var(--tg-panel-header-title-font-size);
                 font-weight: bold;
-                & .text-ellipsis[style*="vip"] {
+                & .text-ellipsis[style*="color"] {
                     color: var(--tg-vip-name-color) !important;
                     text-shadow: none !important;
                     filter: none !important;
@@ -1777,8 +1777,7 @@
     }
 }
 
-@media (prefers-color-scheme: light) {
-    @include light();
+@mixin main() {
     #app {
         @include wallpaper();
         @include sidebar();
@@ -1794,19 +1793,12 @@
     @include context-menu();
 }
 
+@media (prefers-color-scheme: light) {
+    @include light();
+    @include main();
+}
+
 @media (prefers-color-scheme: dark) {
     @include dark();
-    #app {
-        @include wallpaper();
-        @include sidebar();
-        @include contact();
-        @include aio();
-        @include message-right-layout();
-        @include message-left-layout();
-        @include message-others();
-        @include message-self();
-        @include message-concat();
-        @include patch();
-    }
-    @include context-menu();
+    @include main();
 }
