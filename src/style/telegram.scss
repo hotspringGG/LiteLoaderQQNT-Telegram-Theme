@@ -922,6 +922,16 @@
         & .content-status {
             zoom: 1.5;
         }
+
+        // reaction
+        & .reaction-panel {
+            & .reaction-item-bg--clicked {
+                opacity: 0.75;
+            }
+            & .reaction-content:empty {
+                display: none;
+            }
+        }
     }
     // 消息container
     .container--others {
@@ -1110,6 +1120,16 @@
         // 状态、下载按钮
         & .content-status {
             zoom: 1.5;
+        }
+
+        // reaction
+        & .reaction-panel {
+            & .reaction-item-bg--clicked {
+                opacity: 0.75;
+            }
+            & .reaction-content:empty {
+                display: none;
+            }
         }
     }
 
