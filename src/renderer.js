@@ -344,12 +344,12 @@ try {
     if (location.pathname === '/renderer/index.html') {
         if (location.hash === "#/blank") {
             navigation.addEventListener("navigatesuccess", () => {
-                if (location.hash.includes('#/main')) {
-                    onMessageCreate().then()
+                if (location.hash.includes('#/main') || location.hash.includes('#/chat')) {
+                    onMessageCreate()
                 }
             }, { once: true })
-        } else if (location.hash.includes('#/main')) {
-            onMessageCreate().then()
+        } else if (location.hash.includes('#/main') || location.hash.includes('#/chat')) {
+            onMessageCreate()
         }
     }
 
