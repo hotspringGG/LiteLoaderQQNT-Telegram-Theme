@@ -256,12 +256,8 @@ const concatMsg = () => {
                 // error(err)
             }
         }
-
-        const observer = new MutationObserver(() => {
-            // 不处理私聊，纯CSS解决
-            if (!msgList.querySelector('.user-name')) {
-                return
-            }
+        // 总流程
+        const work = () => {
             try {
                 const msgs = msgList.querySelectorAll('.ml-item')
                 nameArr = new Array(msgs.length + 1)
@@ -271,30 +267,49 @@ const concatMsg = () => {
                 for (let i = msgs.length - 1; i >= 1; i--) {
                     cmp(msgs[i - 1], msgs[i], i - 1, i)
                 }
-
                 // 头像浮动，双指针找连续区间
                 let start = 0
+                let avatarMap = new Map()
                 for (let end = 1; end <= msgs.length; end++) {
                     if (end === nameArr.length || nameArr[end] !== nameArr[start] || stopArr[end] === true) {
-                        if (nameArr[start] !== undefined && end - start > 1) {
+                        if (nameArr[start] !== undefined) {
                             // log(start, end, nameArr.slice(start, end))
                             // 合并区间 [start, end)
                             const avatar = msgs[start].querySelector('.avatar-span')
                             if (avatar) {
-                                let sumHeight = 0
-                                for (let i = start; i < end; i++) {
-                                    sumHeight += msgs[i].querySelector('.message-container')?.offsetHeight + 3
-                                }
-                                if (sumHeight > 0) {
-                                    avatar.style.height = sumHeight + 'px'
+                                if (end - start > 1) {
+                                    let sumHeight = -3
+                                    for (let i = start; i < end; i++) {
+                                        sumHeight += msgs[i].querySelector('.message-container')?.offsetHeight + 3
+                                    }
+                                    avatarMap.set(avatar, `${sumHeight}px`)
+                                } else {
+                                    avatarMap.set(avatar, '100%')
                                 }
                             }
                         }
                         start = end
                     }
                 }
+                avatarMap.forEach((sumHeight, avatar) => {
+                    avatar.style.height = sumHeight
+                    avatar.style.display = 'flex'
+                    avatar.style.alignItems = 'flex-end'
+                    avatar.style.bottom = '0'
+                    avatar.style.position = 'absolute'
+                })
             } catch (err) {
                 // error(err)
+            }
+        }
+
+        const observer = new MutationObserver(async (mutationList) => {
+            for (let i = 0; i < mutationList.length; i++) {
+                if (mutationList[i].addedNodes.length > 0) {
+                    // 不处理私聊，纯CSS解决
+                    msgList.querySelector('.user-name') && requestAnimationFrame(work)
+                    return
+                }
             }
         })
         observer.observe(msgList, { childList: true })

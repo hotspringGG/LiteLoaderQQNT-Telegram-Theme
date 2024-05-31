@@ -870,23 +870,20 @@
 
         // 头像
         & .avatar-span {
-            &:has(+ :not(.user-name)) {
-                display: none !important;
-            }
-
             // 强制覆盖大小
             & .message-container__avatar {
                 width: 40px !important;
                 height: 40px !important;
             }
 
+            // 性能问题，改为JS操作头像style属性
             // 头像置底
-            align-items: flex-end;
-            display: flex;
-            height: 100%;
+            // display: flex;
+            // align-items: flex-end;
+            // height: 100%;
             // 绝对定位，用于突破message-container高度限制
-            position: absolute;
-            bottom: 0;
+            // position: absolute;
+            // bottom: 0;
 
             & .avatar {
                 // 底部吸附
