@@ -954,27 +954,27 @@
             border-radius: 20px 20px 20px 8px;
         }
 
-        // 图文混合气泡, 图图混合气泡
-        &:has(.pic-element:nth-child(2)),
-        &:has(.pic-element):has(.text-element, .face-element) {
-            padding: 0;
-            border-radius: 20px 20px 20px 8px;
+        // // 图文混合气泡, 图图混合气泡
+        // &:has(.pic-element:nth-child(2)),
+        // &:has(.pic-element):has(.text-element, .face-element) {
+        //     padding: 0;
+        //     border-radius: 20px 20px 20px 8px;
 
-            & .text-element {
-                display: inline-block;
-                margin: 6px 16px;
-            }
+        //     & .text-element {
+        //         display: inline-block;
+        //         margin: 6px 16px;
+        //     }
 
-            & .face-element {
-                display: inline-block;
-                margin: 6px;
-            }
+        //     & .face-element {
+        //         display: inline-block;
+        //         margin: 6px;
+        //     }
 
-            & .pic-element {
-                border-radius: 0;
-                margin: auto;
-            }
-        }
+        //     & .pic-element {
+        //         border-radius: 0;
+        //         margin: auto;
+        //     }
+        // }
 
         // 图片、动图
         & .pic-element {
@@ -988,7 +988,7 @@
 
         // 回复引用
         & .reply-element {
-            margin: 4px;
+            margin: 4px 0;
             border-radius: 4px;
             border-left: 4px solid var(--tg-message-others-reply-highlight-color);
             background-color: var(--tg-message-others-reply-bg-color);
@@ -1154,27 +1154,27 @@
             border-radius: 20px 20px 8px 20px;
         }
 
-        // 图文混合气泡, 图图混合气泡, 图表情混合气泡
-        &:has(.pic-element:nth-child(2)),
-        &:has(.pic-element):has(.text-element, .face-element) {
-            padding: 0;
-            border-radius: 20px 20px 8px 20px;
+        // // 图文混合气泡, 图图混合气泡, 图表情混合气泡
+        // &:has(.pic-element:nth-child(2)),
+        // &:has(.pic-element):has(.text-element, .face-element) {
+        //     padding: 0;
+        //     border-radius: 20px 20px 8px 20px;
 
-            & .text-element {
-                display: inline-block;
-                margin: 6px 16px;
-            }
+        //     & .text-element {
+        //         display: inline-block;
+        //         margin: 6px 16px;
+        //     }
 
-            & .face-element {
-                display: inline-block;
-                margin: 6px;
-            }
+        //     & .face-element {
+        //         display: inline-block;
+        //         margin: 6px;
+        //     }
 
-            & .pic-element {
-                border-radius: 0;
-                margin: auto;
-            }
-        }
+        //     & .pic-element {
+        //         border-radius: 0;
+        //         margin: auto;
+        //     }
+        // }
 
         // 图片、动图
         & .pic-element {
@@ -1188,7 +1188,7 @@
 
         // 回复引用
         & .reply-element {
-            margin: 4px;
+            margin: 4px 0;
             border-radius: 4px;
             border-left: 4px solid var(--tg-message-self-reply-highlight-color);
             background-color: var(--tg-message-self-reply-bg-color);
