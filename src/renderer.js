@@ -1,4 +1,4 @@
-const pluginPath = LiteLoader.plugins["telegram_theme"].path.plugin
+const pluginPath = LiteLoader.plugins['telegram_theme'].path.plugin
 
 const enableLog = false
 const enableError = false
@@ -119,7 +119,12 @@ const adjustContactWidth = () => {
                 let count = 0
                 const timer = setInterval(() => {
                     const computedStyle = window.getComputedStyle(layoutAside)
-                    if (computedStyle.getPropertyValue('--min-width-aside') || computedStyle.getPropertyValue('--max-width-aside') || computedStyle.getPropertyValue('--drag-width-aside') || computedStyle.getPropertyValue('--default-width-aside')) {
+                    if (
+                        computedStyle.getPropertyValue('--min-width-aside') ||
+                        computedStyle.getPropertyValue('--max-width-aside') ||
+                        computedStyle.getPropertyValue('--drag-width-aside') ||
+                        computedStyle.getPropertyValue('--default-width-aside')
+                    ) {
                         // QQ已完成自定义宽度赋值，覆盖掉
                         const resizeHandler = oldResizeHandler.cloneNode(true)
                         if (!resizeHandler || !oldResizeHandler.parentNode) {
@@ -203,8 +208,10 @@ const concatMsg = () => {
         const cmp = (lower, upper, lowerIndex, upperIndex) => {
             try {
                 // 自己的消息, 或已撤回
-                if (lower.querySelector('.message-container--self, .gray-tip-message') ||
-                    upper.querySelector('.message-container--self, .gray-tip-message')) {
+                if (
+                    lower.querySelector('.message-container--self, .gray-tip-message') ||
+                    upper.querySelector('.message-container--self, .gray-tip-message')
+                ) {
                     return
                 }
                 // lower含时间戳
@@ -304,7 +311,7 @@ const onMessageCreate = async () => {
     log('onMessageCreate start')
     // 插入主题CSS
     if (!document.head?.querySelector('.telegram-css')) {
-        const link = document.createElement("link")
+        const link = document.createElement('link')
         link.type = 'text/css'
         link.rel = 'stylesheet'
         link.classList.add('telegram-css')
@@ -342,17 +349,20 @@ const onMessageCreate = async () => {
 
 try {
     if (location.pathname === '/renderer/index.html') {
-        if (location.hash === "#/blank") {
-            navigation.addEventListener("navigatesuccess", () => {
-                if (location.hash.includes('#/main') || location.hash.includes('#/chat')) {
-                    onMessageCreate()
-                }
-            }, { once: true })
+        if (location.hash === '#/blank') {
+            navigation.addEventListener(
+                'navigatesuccess',
+                () => {
+                    if (location.hash.includes('#/main') || location.hash.includes('#/chat')) {
+                        onMessageCreate()
+                    }
+                },
+                { once: true },
+            )
         } else if (location.hash.includes('#/main') || location.hash.includes('#/chat')) {
             onMessageCreate()
         }
     }
-
 } catch (err) {
     error(err.toString())
     error('main, ERROR')
@@ -421,8 +431,8 @@ class ColorPickerItem {
         if (!opacityDefault) {
             opacityDefault = 'ff'
         }
-        opacityPicker.setAttribute('value', `${parseInt(opacity, 16) / 255 * 100}`)
-        opacityPicker.setAttribute('defaultValue', `${parseInt(opacityDefault, 16) / 255 * 100}`)
+        opacityPicker.setAttribute('value', `${(parseInt(opacity, 16) / 255) * 100}`)
+        opacityPicker.setAttribute('defaultValue', `${(parseInt(opacityDefault, 16) / 255) * 100}`)
         opacityPicker.style.setProperty('--opacity-0', `${hexColor}00`)
         opacityPicker.style.setProperty('--opacity-100', `${hexColor}ff`)
 
@@ -430,14 +440,17 @@ class ColorPickerItem {
         colorPicker.addEventListener('input', (event) => {
             const hexColor = event.target.value.toLowerCase()
             const numOpacity = opacityPicker.value
-            const hexOpacity = Math.round(numOpacity / 100 * 255).toString(16).padStart(2, '0').toLowerCase()
+            const hexOpacity = Math.round((numOpacity / 100) * 255)
+                .toString(16)
+                .padStart(2, '0')
+                .toLowerCase()
 
             // 设定透明度bar的透明色和不透明色
             opacityPicker.style.setProperty('--opacity-0', `${hexColor}00`)
             opacityPicker.style.setProperty('--opacity-100', `${hexColor}ff`)
             // 修改message页面的body style
             const colorWithOpacity = hexColor + hexOpacity
-            channel.postMessage({ 'k': this.itemKey, 'v': colorWithOpacity })
+            channel.postMessage({ k: this.itemKey, v: colorWithOpacity })
             // 保存设置
             IPC.debounceSetSetting(this.itemKey, colorWithOpacity)
             // log(`colorPicker set body style, ${this.itemKey} : ${colorWithOpacity}`)
@@ -446,7 +459,10 @@ class ColorPickerItem {
         // 监听透明度修改
         opacityPicker.addEventListener('input', (event) => {
             const numOpacity = event.target.value
-            const hexOpacity = Math.round(numOpacity / 100 * 255).toString(16).padStart(2, '0').toLowerCase()
+            const hexOpacity = Math.round((numOpacity / 100) * 255)
+                .toString(16)
+                .padStart(2, '0')
+                .toLowerCase()
 
             // 设定透明度bar的透明色和不透明色
             const hexColor = colorPicker.value.toLowerCase()
@@ -454,7 +470,7 @@ class ColorPickerItem {
             opacityPicker.style.setProperty('--opacity-100', `${hexColor}ff`)
             // 修改message页面的body style
             const colorWithOpacity = hexColor + hexOpacity
-            channel.postMessage({ 'k': this.itemKey, 'v': colorWithOpacity })
+            channel.postMessage({ k: this.itemKey, v: colorWithOpacity })
             // 保存设置
             IPC.debounceSetSetting(this.itemKey, colorWithOpacity)
             // log(`colorPicker set body style, ${this.itemKey} : ${colorWithOpacity}`)
@@ -521,7 +537,7 @@ class TextItem {
         textInput.addEventListener('input', (event) => {
             const newValue = event.target.value
             // 修改message页面的body style
-            channel.postMessage({ 'k': this.itemKey, 'v': newValue })
+            channel.postMessage({ k: this.itemKey, v: newValue })
             // 保存设置
             IPC.debounceSetSetting(this.itemKey, newValue)
             // log(`textInput set body style, ${this.itemKey} : ${newValue}`)
@@ -625,12 +641,12 @@ const onSettingCreate = async (view) => {
             throw Error('getSetting error')
         }
         const settingItemLists = {
-            '壁纸设定': [],
-            '自己的消息': [],
-            '他人的消息': [],
-            '会话列表': [],
-            '侧边栏': [],
-            '其他设定': [],
+            壁纸设定: [],
+            自己的消息: [],
+            他人的消息: [],
+            会话列表: [],
+            侧边栏: [],
+            其他设定: [],
         }
         for (const key in setting) {
             const v = setting[key]
@@ -672,6 +688,6 @@ const onSettingCreate = async (view) => {
 }
 
 // 打开设置界面时触发
-export const onSettingWindowCreated = view => {
+export const onSettingWindowCreated = (view) => {
     onSettingCreate(view)
 }

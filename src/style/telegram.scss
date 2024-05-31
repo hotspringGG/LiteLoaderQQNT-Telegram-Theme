@@ -53,7 +53,7 @@
                                         }
 
                                         &.tab-item-img-normal {
-                                            & i.q-icon {
+                                            & .q-icon {
                                                 // 未选中时，普通icon，只有线条
                                                 color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                             }
@@ -69,7 +69,7 @@
 
                             // 更多按钮
                             & .more-item {
-                                & i.q-icon {
+                                & .q-icon {
                                     // 未选中时，普通icon，只有线条
                                     color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                 }
@@ -85,7 +85,7 @@
                             // 功能按钮项
                             & .func-menu__item {
                                 & .icon-item {
-                                    & i.q-icon {
+                                    & .q-icon {
                                         // 未选中时，普通icon，只有线条
                                         color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                     }
@@ -449,11 +449,11 @@
         & .panel-header__action {
             & .func-bar {
                 & .bar-icon {
-                    & i.q-icon {
+                    & .q-icon {
                         color: var(--tg-func-bar-icon-color);
                     }
                     &:hover {
-                        & i.q-icon {
+                        & .q-icon {
                             color: var(--tg-func-bar-icon-hover-color);
                         }
                     }
@@ -505,13 +505,13 @@
                         display: none;
                     }
 
-                    & .icon-item i.q-icon,
-                    & .icon-item i.q-icon svg {
+                    & .icon-item .q-icon,
+                    & .icon-item .q-icon svg {
                         width: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
                         height: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
                         color: var(--tg-func-bar-icon-color);
                     }
-                    & .arrow i.q-icon {
+                    & .arrow .q-icon {
                         color: var(--tg-func-bar-icon-color);
                         zoom: 1.7;
                     }
@@ -521,9 +521,9 @@
                     }
 
                     &:hover {
-                        & .icon-item i.q-icon,
-                        & .icon-item i.q-icon svg,
-                        & .arrow i.q-icon {
+                        & .icon-item .q-icon,
+                        & .icon-item .q-icon svg,
+                        & .arrow .q-icon {
                             color: var(--tg-func-bar-icon-hover-color);
                         }
                     }
@@ -636,8 +636,8 @@
                 color: transparent !important;
                 width: calc(var(--tg-chat-input-area-font-size) * 3) !important;
                 height: calc(var(--tg-chat-input-area-font-size) * 3) !important;
-                margin-bottom: 5px;
-                margin-right: 5px;
+                margin-bottom: 3px;
+                margin-right: 3px;
                 cursor: pointer;
                 background: {
                     color: unset !important;
@@ -921,19 +921,16 @@
         }
 
         // reaction
-        & .reaction-panel {
-            & .reaction-item-bg--clicked {
-                opacity: 0.75;
-            }
-            & .reaction-content:empty {
-                display: none;
-            }
+        & .reaction-item-bg--clicked {
+            opacity: 0.75;
+        }
+        & .reaction-content:empty {
+            display: none;
         }
     }
     // 消息container
     .container--others {
         position: relative;
-        color: black;
 
         // 气泡背景色
         background-color: var(--tg-message-others-bg-color);
@@ -961,6 +958,28 @@
             max-width: min(40vw, 500px) !important;
         }
 
+        // 图文混合气泡, 图图混合气泡
+        &:not(:has(.reply-element)):has(.pic-element:nth-child(2)),
+        &:not(:has(.reply-element)):has(.pic-element):has(.text-element, .face-element) {
+            padding: 0;
+            border-radius: 20px 20px 20px 8px;
+
+            & .text-element {
+                display: inline-block;
+                margin: 6px 16px;
+            }
+
+            & .face-element {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            & .pic-element {
+                border-radius: 0;
+                margin: auto;
+            }
+        }
+
         // 回复引用
         & .reply-element {
             margin: 4px 0;
@@ -976,7 +995,7 @@
                 & .reply-info {
                     font-size: var(--tg-message-others-reply-content-font-size);
                 }
-                & i.q-icon {
+                & .q-icon {
                     display: none;
                 }
             }
@@ -1023,45 +1042,38 @@
         // 语音消息
         & .ptt-element {
             zoom: 1.2;
-
-            & .ptt-element__button {
+        }
+        & .ptt-element__button {
+            background-color: var(--tg-message-others-highlight-color) !important;
+        }
+        & .ptt-element__progress {
+            & .ptt-element__progress-item {
                 background-color: var(--tg-message-others-highlight-color) !important;
             }
+        }
+        & .ptt-element__duration span {
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--tg-message-others-highlight-color);
+        }
 
-            & .ptt-element__progress {
-                & .ptt-element__progress-item {
-                    background-color: var(--tg-message-others-highlight-color) !important;
-                }
-            }
-
-            & .ptt-element__duration span {
-                font-size: 12px;
-                font-weight: bold;
+        // 语音转文字
+        & .ptt-element__bottom-area-text {
+            color: var(--tg-message-others-font-color);
+        }
+        & .ptt-element__bottom-area-icon {
+            & .q-icon {
                 color: var(--tg-message-others-highlight-color);
             }
         }
 
-        // 语音转文字
-        & .ptt-element__bottom-area {
-            & .ptt-element__bottom-area-text {
-                color: var(--tg-message-others-font-color);
-            }
-            & .ptt-element__bottom-area-icon {
-                & i.q-icon {
-                    color: var(--tg-message-others-highlight-color);
-                }
-            }
-        }
-
         // 语音通话、视频通话
-        &.av-message__container {
-            & .av-msg {
-                & i.q-icon {
-                    color: var(--tg-message-others-highlight-color);
-                }
-                & span {
-                    color: var(--tg-message-others-font-color);
-                }
+        & .av-msg {
+            & .q-icon {
+                color: var(--tg-message-others-highlight-color);
+            }
+            & span {
+                color: var(--tg-message-others-font-color);
             }
         }
     }
@@ -1098,20 +1110,17 @@
         }
 
         // reaction
-        & .reaction-panel {
-            & .reaction-item-bg--clicked {
-                opacity: 0.75;
-            }
-            & .reaction-content:empty {
-                display: none;
-            }
+        & .reaction-item-bg--clicked {
+            opacity: 0.75;
+        }
+        & .reaction-content:empty {
+            display: none;
         }
     }
 
     // 消息container
     .container--self {
         position: relative;
-        color: black;
 
         // 气泡背景色
         background-color: var(--tg-message-self-bg-color);
@@ -1139,6 +1148,28 @@
             max-width: min(40vw, 500px) !important;
         }
 
+        // 图文混合气泡, 图图混合气泡
+        &:not(:has(.reply-element)):has(.pic-element:nth-child(2)),
+        &:not(:has(.reply-element)):has(.pic-element):has(.text-element, .face-element) {
+            padding: 0;
+            border-radius: 20px 20px 20px 8px;
+
+            & .text-element {
+                display: inline-block;
+                margin: 6px 16px;
+            }
+
+            & .face-element {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            & .pic-element {
+                border-radius: 0;
+                margin: auto;
+            }
+        }
+
         // 回复引用
         & .reply-element {
             margin: 4px 0;
@@ -1154,7 +1185,7 @@
                 & .reply-info {
                     font-size: var(--tg-message-self-reply-content-font-size);
                 }
-                & i.q-icon {
+                & .q-icon {
                     display: none;
                 }
             }
@@ -1224,7 +1255,7 @@
                 color: var(--tg-message-self-font-color);
             }
             & .ptt-element__bottom-area-icon {
-                & i.q-icon {
+                & .q-icon {
                     color: var(--tg-message-self-highlight-color);
                 }
             }
@@ -1233,7 +1264,7 @@
         // 语音通话、视频通话
         &.av-message__container {
             & .av-msg {
-                & i.q-icon {
+                & .q-icon {
                     color: var(--tg-message-self-highlight-color);
                 }
                 & span {
@@ -1312,7 +1343,6 @@
 // 壁纸
 @mixin wallpaper() {
     .tab-container {
-        // 设定telegram背景图 or telegram背景色
         background: {
             image: var(--tg-container-image) !important;
             color: var(--tg-container-bg-color);
@@ -1328,7 +1358,6 @@
             height: 100%;
             top: 0;
             left: 0;
-            // 鼠标穿透
             pointer-events: none;
             backdrop-filter: var(--tg-container-backdrop-filter);
         }
@@ -1413,8 +1442,7 @@
     .message-container {
         // 图文混合气泡、图图混合气泡
         & .msg-content-container:has(.pic-element:nth-child(2)),
-        & .msg-content-container:has(.face-element):has(.pic-element),
-        & .msg-content-container:has(.text-element):has(.pic-element) {
+        & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
             & .lite-tools-slot.embed-slot {
                 position: absolute;
                 bottom: 4px;
@@ -1458,8 +1486,7 @@
         }
         &:hover {
             & .msg-content-container:has(.pic-element:nth-child(2)),
-            & .msg-content-container:has(.face-element):has(.pic-element),
-            & .msg-content-container:has(.text-element):has(.pic-element) {
+            & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
                 & .lite-tools-slot.embed-slot {
                     visibility: visible;
                     & .lite-tools-time {
@@ -1491,8 +1518,7 @@
         // 他人消息时间颜色
         &:not(.message-container--self) {
             & .msg-content-container:has(.pic-element:nth-child(2)),
-            & .msg-content-container:has(.face-element):has(.pic-element),
-            & .msg-content-container:has(.text-element):has(.pic-element) {
+            & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
                 & .lite-tools-slot.embed-slot {
                     & .lite-tools-time {
                         color: white !important;
@@ -1509,7 +1535,7 @@
 
     // 页面控制按钮
     .window-control-area {
-        & i.q-icon,
+        & .q-icon,
         & div {
             color: var(--tg-window-control-area-button-color);
             &:hover {
@@ -1545,10 +1571,10 @@
 // 右键菜单
 @mixin context-menu() {
     // 回复和撤回按钮高亮
-    .q-context-menu-item:has(i.q-icon path[d^="M6.00031"], i.q-icon use[*|href$="quote_24"]) {
+    .q-context-menu-item:has(.q-icon path[d^="M6.00031"], .q-icon use[*|href$="quote_24"]) {
         color: var(--tg-context-menu-reply-font-color) !important;
     }
-    .q-context-menu-item:has(i.q-icon path[d^="M2.14649"], i.q-icon use[*|href$="recall_24"]) {
+    .q-context-menu-item:has(.q-icon path[d^="M2.14649"], .q-icon use[*|href$="recall_24"]) {
         color: var(--tg-context-menu-withdraw-font-color) !important;
     }
 }
