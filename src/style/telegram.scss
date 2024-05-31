@@ -807,12 +807,9 @@
 @mixin message-right-layout() {
     .message-container.message-container--align-right {
         // 隐藏自己的头像、用户名
-        grid-template-columns: auto 1fr calc(var(--avatar_size_2) + 8px) auto 0 0;
+        grid-template-columns: auto minmax(20%, 1fr) calc(var(--avatar_size_2) + 8px) auto 0 0;
 
-        & .avatar {
-            display: none;
-        }
-
+        & .avatar,
         & .user-name {
             display: none;
         }
@@ -823,7 +820,7 @@
 @mixin message-left-layout() {
     .message-container:not(.message-container--align-right) {
         // 增大消息泡与头像间隔
-        grid-template-columns: auto var(--avatar_size_2) 20px auto calc(var(--avatar_size_2) + 8px) 1fr;
+        grid-template-columns: auto var(--avatar_size_2) 20px auto calc(var(--avatar_size_2) + 8px) minmax(20%, 1fr);
 
         // 私聊模式时，隐藏对方头像，默认无用户名
         &:not(:has(.user-name)) {
@@ -831,7 +828,7 @@
                 "checkbox . nickname nickname nickname"
                 "checkbox . content status ."
                 "checkbox . tips tips tips";
-            grid-template-columns: auto auto auto calc(var(--avatar_size_2) + 8px) 1fr;
+            grid-template-columns: auto auto auto calc(var(--avatar_size_2) + 8px) minmax(20%, 1fr);
 
             & .avatar {
                 display: none;
@@ -953,28 +950,6 @@
             padding: calc(var(--tg-message-others-font-size) * 0.5) calc(var(--tg-message-others-font-size) * 0.8);
             border-radius: 20px 20px 20px 8px;
         }
-
-        // // 图文混合气泡, 图图混合气泡
-        // &:has(.pic-element:nth-child(2)),
-        // &:has(.pic-element):has(.text-element, .face-element) {
-        //     padding: 0;
-        //     border-radius: 20px 20px 20px 8px;
-
-        //     & .text-element {
-        //         display: inline-block;
-        //         margin: 6px 16px;
-        //     }
-
-        //     & .face-element {
-        //         display: inline-block;
-        //         margin: 6px;
-        //     }
-
-        //     & .pic-element {
-        //         border-radius: 0;
-        //         margin: auto;
-        //     }
-        // }
 
         // 图片、动图
         & .pic-element {
@@ -1153,28 +1128,6 @@
             padding: 8px 16px;
             border-radius: 20px 20px 8px 20px;
         }
-
-        // // 图文混合气泡, 图图混合气泡, 图表情混合气泡
-        // &:has(.pic-element:nth-child(2)),
-        // &:has(.pic-element):has(.text-element, .face-element) {
-        //     padding: 0;
-        //     border-radius: 20px 20px 8px 20px;
-
-        //     & .text-element {
-        //         display: inline-block;
-        //         margin: 6px 16px;
-        //     }
-
-        //     & .face-element {
-        //         display: inline-block;
-        //         margin: 6px;
-        //     }
-
-        //     & .pic-element {
-        //         border-radius: 0;
-        //         margin: auto;
-        //     }
-        // }
 
         // 图片、动图
         & .pic-element {
