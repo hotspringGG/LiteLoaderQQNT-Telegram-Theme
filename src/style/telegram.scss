@@ -956,8 +956,7 @@
         }
 
         // 图文混合气泡, 图图混合气泡
-        &:not(:has(.reply-element)):has(.pic-element:nth-child(2)),
-        &:not(:has(.reply-element)):has(.pic-element):has(.text-element, .face-element) {
+        &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
             padding: 0;
             border-radius: 20px 20px 20px 8px;
 
@@ -973,14 +972,22 @@
 
             & .pic-element {
                 border-radius: 0;
+                padding: 0;
+                margin: 0;
                 margin: auto;
             }
         }
 
+        // 回复气泡
+        &.reply-message__container {
+            padding: 12px 12px 8px 12px;
+            border-radius: 20px 20px 20px 8px;
+        }
+
         // 回复引用
         & .reply-element {
-            margin: 4px 0;
-            border-radius: 4px;
+            margin: 0 0 8px 0;
+            border-radius: 5px 8px 8px 5px;
             border-left: 4px solid var(--tg-message-others-reply-highlight-color);
             background-color: var(--tg-message-others-reply-bg-color);
             cursor: pointer;
@@ -1131,7 +1138,7 @@
         // 包含文字内容或语音的气泡
         &:has(.text-element, .face-element),
         &:is(.ptt-message) {
-            padding: 8px 16px;
+            padding: calc(var(--tg-message-self-font-size) * 0.5) calc(var(--tg-message-self-font-size) * 0.8);
             border-radius: 20px 20px 8px 20px;
         }
 
@@ -1146,10 +1153,9 @@
         }
 
         // 图文混合气泡, 图图混合气泡
-        &:not(:has(.reply-element)):has(.pic-element:nth-child(2)),
-        &:not(:has(.reply-element)):has(.pic-element):has(.text-element, .face-element) {
+        &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
             padding: 0;
-            border-radius: 20px 20px 20px 8px;
+            border-radius: 20px 20px 8px 20px;
 
             & .text-element {
                 display: inline-block;
@@ -1163,14 +1169,22 @@
 
             & .pic-element {
                 border-radius: 0;
+                padding: 0;
+                margin: 0;
                 margin: auto;
             }
         }
 
+        // 回复气泡
+        &.reply-message__container {
+            padding: 12px 12px 8px 12px;
+            border-radius: 20px 20px 8px 20px;
+        }
+
         // 回复引用
         & .reply-element {
-            margin: 4px 0;
-            border-radius: 4px;
+            margin: 0 0 8px 0;
+            border-radius: 5px 8px 8px 5px;
             border-left: 4px solid var(--tg-message-self-reply-highlight-color);
             background-color: var(--tg-message-self-reply-bg-color);
             cursor: pointer;
