@@ -950,31 +950,32 @@
             zoom: var(--tg-message-others-pic-element-zoom);
         }
 
-        // 图片最大宽度
-        &.mix-message__container.mix-message__container--pic {
-            max-width: min(40vw, 500px) !important;
-        }
+        // // 图片最大宽度
+        // &.mix-message__container.mix-message__container--pic {
+        //     max-width: min(40vw, 500px) !important;
+        // }
 
         // 图文混合气泡, 图图混合气泡
         &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
             padding: 0;
             border-radius: 20px 20px 20px 8px;
 
-            & .text-element {
-                display: inline-block;
-                margin: 6px 16px;
-            }
-
-            & .face-element {
-                display: inline-block;
-                margin: 6px;
+            // 消息泡贴合图片
+            & .message-content {
+                width: min-content;
+                // 最小宽度12em
+                min-width: calc(12 * var(--tg-message-self-font-size) + 24px);
             }
 
             & .pic-element {
                 border-radius: 0;
                 padding: 0;
-                margin: 0;
-                margin: auto;
+                margin: 0 auto;
+            }
+
+            & .text-element {
+                display: inline-block;
+                margin: 8px 16px;
             }
         }
 
@@ -1147,31 +1148,32 @@
             zoom: var(--tg-message-self-pic-element-zoom);
         }
 
-        // 图片最大宽度
-        &.mix-message__container.mix-message__container--pic {
-            max-width: min(40vw, 500px) !important;
-        }
+        // // 图片最大宽度
+        // &.mix-message__container.mix-message__container--pic {
+        //     max-width: min(40vw, 500px) !important;
+        // }
 
         // 图文混合气泡, 图图混合气泡
         &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
             padding: 0;
             border-radius: 20px 20px 8px 20px;
 
-            & .text-element {
-                display: inline-block;
-                margin: 6px 16px;
-            }
-
-            & .face-element {
-                display: inline-block;
-                margin: 6px;
+            // 消息泡贴合图片
+            & .message-content {
+                width: min-content;
+                // 最小宽度12em
+                min-width: calc(12 * var(--tg-message-self-font-size) + 24px);
             }
 
             & .pic-element {
                 border-radius: 0;
                 padding: 0;
-                margin: 0;
-                margin: auto;
+                margin: 0 auto;
+            }
+
+            & .text-element {
+                display: inline-block;
+                margin: 8px 16px;
             }
         }
 
@@ -1452,8 +1454,7 @@
     }
     .message-container {
         // 图文混合气泡、图图混合气泡
-        & .msg-content-container:has(.pic-element:nth-child(2)),
-        & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
+        & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
             & .lite-tools-slot.embed-slot {
                 position: absolute;
                 bottom: 4px;
@@ -1496,8 +1497,7 @@
             }
         }
         &:hover {
-            & .msg-content-container:has(.pic-element:nth-child(2)),
-            & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
+            & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
                 & .lite-tools-slot.embed-slot {
                     visibility: visible;
                     & .lite-tools-time {
@@ -1528,8 +1528,7 @@
 
         // 他人消息时间颜色
         &:not(.message-container--self) {
-            & .msg-content-container:has(.pic-element:nth-child(2)),
-            & .msg-content-container:has(.face-element, .text-element):has(.pic-element) {
+            & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
                 & .lite-tools-slot.embed-slot {
                     & .lite-tools-time {
                         color: white !important;
