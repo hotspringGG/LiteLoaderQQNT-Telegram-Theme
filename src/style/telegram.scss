@@ -976,14 +976,24 @@
                 display: inline-block;
             }
             & .face-element {
-                margin: 2px 12px;
+                margin: 1px 12px;
                 display: inline-block;
             }
+
+            // 性能稀烂
+            // & :is(.face-element, .text-element) {
+            //     & + :is(.face-element, .text-element) {
+            //         margin-left: 1px !important;
+            //     }
+            //     &:has(+ :is(.face-element, .text-element)) {
+            //         margin-right: 1px !important;
+            //     }
+            // }
             & :is(.face-element, .text-element) {
-                & + :is(.face-element, .text-element) {
+                &:not(:first-of-type) {
                     margin-left: 1px !important;
                 }
-                &:has(+ :is(.face-element, .text-element)) {
+                &:not(:last-of-type) {
                     margin-right: 1px !important;
                 }
             }
@@ -1184,14 +1194,22 @@
                 display: inline-block;
             }
             & .face-element {
-                margin: 2px 12px;
+                margin: 1px 12px;
                 display: inline-block;
             }
+            // & :is(.face-element, .text-element) {
+            //     & + :is(.face-element, .text-element) {
+            //         margin-left: 1px !important;
+            //     }
+            //     &:has(+ :is(.face-element, .text-element)) {
+            //         margin-right: 1px !important;
+            //     }
+            // }
             & :is(.face-element, .text-element) {
-                & + :is(.face-element, .text-element) {
+                &:not(:first-of-type) {
                     margin-left: 1px !important;
                 }
-                &:has(+ :is(.face-element, .text-element)) {
+                &:not(:last-of-type) {
                     margin-right: 1px !important;
                 }
             }
