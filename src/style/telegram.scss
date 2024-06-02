@@ -933,8 +933,9 @@
         background-color: var(--tg-message-others-bg-color);
 
         // 单图，表情包，红包 无背景色
-        &:is(.mix-message__container--market-face, .wallet-message__container),
-        &:has(.pic-element:only-child) {
+        &.mix-message__container--market-face,
+        &.mix-message__container--pic,
+        &.wallet-message__container {
             background-color: transparent !important;
         }
 
@@ -946,14 +947,9 @@
         }
 
         // 图片、动图
-        & .pic-element {
-            zoom: var(--tg-message-others-pic-element-zoom);
+        &.mix-message__container--pic {
+            zoom: var(--tg-message-self-pic-element-zoom);
         }
-
-        // // 图片最大宽度
-        // &.mix-message__container.mix-message__container--pic {
-        //     max-width: min(40vw, 500px) !important;
-        // }
 
         // 图文混合气泡, 图图混合气泡
         &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
@@ -963,19 +959,33 @@
             // 消息泡贴合图片
             & .message-content {
                 width: min-content;
-                // 最小宽度12em
-                min-width: calc(12 * var(--tg-message-self-font-size) + 24px);
+                // 最小宽度
+                min-width: calc(10 * var(--tg-message-others-font-size) + 24px);
             }
 
             & .pic-element {
                 border-radius: 0;
                 padding: 0;
                 margin: 0 auto;
+                zoom: var(--tg-message-others-pic-element-zoom);
             }
 
+            // 文字与气泡间距
             & .text-element {
+                margin: 8px 12px;
                 display: inline-block;
-                margin: 8px 16px;
+            }
+            & .face-element {
+                margin: 2px 12px;
+                display: inline-block;
+            }
+            & :is(.face-element, .text-element) {
+                & + :is(.face-element, .text-element) {
+                    margin-left: 1px !important;
+                }
+                &:has(+ :is(.face-element, .text-element)) {
+                    margin-right: 1px !important;
+                }
             }
         }
 
@@ -1131,8 +1141,9 @@
         background-color: var(--tg-message-self-bg-color);
 
         // 单图，表情包，红包 无背景色
-        &:is(.mix-message__container--market-face, .wallet-message__container),
-        &:has(.pic-element:only-child) {
+        &.mix-message__container--market-face,
+        &.mix-message__container--pic,
+        &.wallet-message__container {
             background-color: transparent !important;
         }
 
@@ -1144,14 +1155,9 @@
         }
 
         // 图片、动图
-        & .pic-element {
+        &.mix-message__container--pic {
             zoom: var(--tg-message-self-pic-element-zoom);
         }
-
-        // // 图片最大宽度
-        // &.mix-message__container.mix-message__container--pic {
-        //     max-width: min(40vw, 500px) !important;
-        // }
 
         // 图文混合气泡, 图图混合气泡
         &.mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
@@ -1161,19 +1167,33 @@
             // 消息泡贴合图片
             & .message-content {
                 width: min-content;
-                // 最小宽度12em
-                min-width: calc(12 * var(--tg-message-self-font-size) + 24px);
+                // 最小宽度
+                min-width: calc(10 * var(--tg-message-self-font-size) + 24px);
             }
 
             & .pic-element {
                 border-radius: 0;
                 padding: 0;
                 margin: 0 auto;
+                zoom: var(--tg-message-self-pic-element-zoom);
             }
 
+            // 文字与气泡间距
             & .text-element {
+                margin: 8px 12px;
                 display: inline-block;
-                margin: 8px 16px;
+            }
+            & .face-element {
+                margin: 2px 12px;
+                display: inline-block;
+            }
+            & :is(.face-element, .text-element) {
+                & + :is(.face-element, .text-element) {
+                    margin-left: 1px !important;
+                }
+                &:has(+ :is(.face-element, .text-element)) {
+                    margin-right: 1px !important;
+                }
             }
         }
 
