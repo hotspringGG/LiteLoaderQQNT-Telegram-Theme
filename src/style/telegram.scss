@@ -166,7 +166,8 @@
                                         padding: 12px 14px !important;
                                         // 头像
                                         & .list-item__avatar {
-                                            & .avatar {
+                                            & .avatar,
+                                            & .recent-contact-item__phone {
                                                 // 头像图片
                                                 height: var(--tg-contact-list-item-avatar-size) !important;
                                                 width: var(--tg-contact-list-item-avatar-size) !important;
@@ -189,7 +190,7 @@
                                                     color: var(--tg-contact-list-item-unselected-title-font-color);
                                                     // 会员彩色用户名
                                                     &.vip-name,
-                                                    & .text-ellipsis[style*="color"] {
+                                                    & .text-ellipsis[style*='color'] {
                                                         color: var(--tg-vip-name-color) !important;
                                                         text-shadow: none !important;
                                                         filter: none !important;
@@ -258,7 +259,8 @@
                                         padding: 12px 14px !important;
                                         // 头像
                                         & .list-item__avatar {
-                                            & .avatar {
+                                            & .avatar,
+                                            & .recent-contact-item__phone {
                                                 // 头像图片
                                                 height: var(--tg-contact-list-item-avatar-size) !important;
                                                 width: var(--tg-contact-list-item-avatar-size) !important;
@@ -431,7 +433,7 @@
                 color: var(--tg-panel-header-title-color);
                 font-size: var(--tg-panel-header-title-font-size);
                 font-weight: bold;
-                & .text-ellipsis[style*="color"] {
+                & .text-ellipsis[style*='color'] {
                     color: var(--tg-vip-name-color) !important;
                     text-shadow: none !important;
                     filter: none !important;
@@ -582,7 +584,7 @@
 
                             // 文字输入框 placeholder
                             & .ck-placeholder:before {
-                                --qq-editor-placeholder: "Write a message...";
+                                --qq-editor-placeholder: 'Write a message...';
                                 color: var(--tg-chat-input-area-placeholder-font-color);
                             }
 
@@ -641,7 +643,7 @@
                 cursor: pointer;
                 background: {
                     color: unset !important;
-                    image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjMzNiAzNTMgNjExIDY4MCI+CiAgPHBhdGggZD0iTSA0MDMgNzIwIEMgNDA0IDcxOSA3MzAgNzE3IDczMCA3MDAgQyA3MzAgNjgzIDQwNCA2NzQgNDAyIDY3NCBDIDQwNCA2NzQgMzM2IDM1NSAzMzYgMzUzIEMgMzM5IDM1NiA5NDcgNjgxIDk0NyA3MDMgQyA5NDcgNzI4IDM0MyAxMDM1IDM0NiAxMDMzIFoiIGZpbGw9IiM0MGE3ZTMiLz4KPC9zdmc+");
+                    image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjMzNiAzNTMgNjExIDY4MCI+CiAgPHBhdGggZD0iTSA0MDMgNzIwIEMgNDA0IDcxOSA3MzAgNzE3IDczMCA3MDAgQyA3MzAgNjgzIDQwNCA2NzQgNDAyIDY3NCBDIDQwNCA2NzQgMzM2IDM1NSAzMzYgMzUzIEMgMzM5IDM1NiA5NDcgNjgxIDk0NyA3MDMgQyA5NDcgNzI4IDM0MyAxMDM1IDM0NiAxMDMzIFoiIGZpbGw9IiM0MGE3ZTMiLz4KPC9zdmc+');
                     repeat: no-repeat;
                     position: center;
                     size: 50%;
@@ -825,9 +827,9 @@
         // 私聊模式时，隐藏对方头像，默认无用户名
         &:not(:has(.user-name)) {
             grid-template-areas:
-                "checkbox . nickname nickname nickname"
-                "checkbox . content status ."
-                "checkbox . tips tips tips";
+                'checkbox . nickname nickname nickname'
+                'checkbox . content status .'
+                'checkbox . tips tips tips';
             grid-template-columns: auto auto auto calc(var(--avatar_size_2) + 8px) minmax(20%, 1fr);
 
             & .avatar {
@@ -1403,7 +1405,7 @@
             attachment: fixed;
         }
         &::before {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
@@ -1425,7 +1427,7 @@
             attachment: fixed;
         }
         &::before {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
@@ -1619,10 +1621,10 @@
 // 右键菜单
 @mixin context-menu() {
     // 回复和撤回按钮高亮
-    .q-context-menu-item:has(.q-icon path[d^="M6.00031"], .q-icon use[*|href$="quote_24"]) {
+    .q-context-menu-item:has(.q-icon path[d^='M6.00031'], .q-icon use[*|href$='quote_24']) {
         color: var(--tg-context-menu-reply-font-color) !important;
     }
-    .q-context-menu-item:has(.q-icon path[d^="M2.14649"], .q-icon use[*|href$="recall_24"]) {
+    .q-context-menu-item:has(.q-icon path[d^='M2.14649'], .q-icon use[*|href$='recall_24']) {
         color: var(--tg-context-menu-withdraw-font-color) !important;
     }
 }
@@ -1632,7 +1634,7 @@
     :root {
         // 壁纸和背景色
         // url("local:///E:/path/to/image.png")
-        --tg-container-image: url("local:///");
+        --tg-container-image: url('local:///');
         --tg-container-bg-color: #eeeeee;
         --tg-container-backdrop-filter: blur(0px);
 
@@ -1730,7 +1732,7 @@
     :root {
         // 壁纸和背景色
         // url("local:///E:/path/to/image.png")
-        --tg-container-image: url("local:///");
+        --tg-container-image: url('local:///');
         --tg-container-bg-color: #0e1621;
         --tg-container-backdrop-filter: blur(0px);
 
