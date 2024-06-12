@@ -11,7 +11,7 @@
     setting-item {
         background-color: white;
     }
-    input[type="text"] {
+    input[type='text'] {
         color: black;
     }
     button {
@@ -31,7 +31,7 @@
     setting-item {
         background-color: #262626;
     }
-    input[type="text"] {
+    input[type='text'] {
         color: white;
     }
     button {
@@ -59,7 +59,7 @@
         }
         & .col-color {
             overflow: hidden;
-            & input[type="color"] {
+            & input[type='color'] {
                 width: 120px;
                 height: 26px;
                 padding: 0;
@@ -83,7 +83,7 @@
             --opacity-0: #00000000;
             --opacity-100: #000000ff;
             margin-left: 12px;
-            input[type="range"] {
+            input[type='range'] {
                 width: 120px;
                 height: 26px;
                 overflow: hidden;
@@ -144,7 +144,7 @@
             }
         }
         & .col-text {
-            input[type="text"] {
+            input[type='text'] {
                 width: 120px;
                 height: 26px;
                 font-size: 1.1em;
