@@ -146,24 +146,23 @@
             & .viewport-list__inner {
                 // 会话项
                 & .list-item {
-                    background-color: var(--tg-contact-list-item-bg-color) !important;
+                    background-color: var(--tg-contact-list-item-bg-color);
                     // 置顶时，默认颜色不同
                     &.recent-contact-item--top {
                         & .list-item__container {
                             background-color: var(--tg-contact-list-item-top-bg-color);
+                            &:hover {
+                                background-color: var(--tg-contact-list-item-hover-bg-color);
+                            }
                         }
-                    }
-
-                    // hover时颜色
-                    &:hover {
-                        background-color: var(--tg-contact-list-item-hover-bg-color) !important;
                     }
 
                     // 未选中时
                     &:not(.list-item--selected) {
-                        // 未选中时背景色
-                        // background-color: initial;
                         & .list-item__container {
+                            &:hover {
+                                background-color: var(--tg-contact-list-item-hover-bg-color);
+                            }
                             & .list-item__content {
                                 // 内边距
                                 padding: 12px 14px !important;
@@ -285,6 +284,7 @@
                                         // 用户名
                                         & .main-info {
                                             --text_primary: var(--tg-contact-list-item-selected-title-font-color);
+                                            --on_brand_primary: var(--tg-contact-list-item-selected-title-font-color);
                                             color: var(--tg-contact-list-item-selected-title-font-color) !important;
                                             &.vip-name {
                                                 color: var(--tg-vip-name-color) !important;
