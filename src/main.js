@@ -18,15 +18,6 @@ const error = (...args) => {
         console.log('\x1b[31m[telegram-theme]\x1b[0m', ...args)
     }
 }
-const debounce = (fn, time = 100) => {
-    let timer = null
-    return (...args) => {
-        timer && clearTimeout(timer)
-        timer = setTimeout(() => {
-            fn.apply(this, args)
-        }, time)
-    }
-}
 
 // 主窗口对象
 let mainWindow
@@ -62,7 +53,7 @@ const initSetting = () => {
 
             // 更新配置
             for (const key in newSetting['light']) {
-                if (!localSetting['light'].hasOwnProperty(key)) {
+                if (!Object.hasOwn(localSetting['light'], key)) {
                     localSetting['light'][key] = newSetting['light'][key]
                 } else {
                     // 更新默认值和文字介绍
@@ -74,7 +65,7 @@ const initSetting = () => {
                 }
             }
             for (const key in newSetting['dark']) {
-                if (!localSetting['dark'].hasOwnProperty(key)) {
+                if (!Object.hasOwn(localSetting['dark'], key)) {
                     localSetting['dark'][key] = newSetting['dark'][key]
                 } else {
                     // 更新默认值和文字介绍
@@ -93,8 +84,7 @@ const initSetting = () => {
             log('initSetting update local setting to latest version')
         }
     } catch (err) {
-        error(err.toString())
-        error('initSetting error')
+        error('initSetting error', err.toString())
     }
 }
 
@@ -106,8 +96,7 @@ const getSetting = async () => {
         let setting = JSON.parse(rawdata)
         return setting[getCurrTheme()]
     } catch (err) {
-        error(err.toString())
-        error('getSetting error')
+        error('getSetting error', err.toString())
         return null
     }
 }
@@ -128,70 +117,73 @@ const setSetting = (k, v, theme = null) => {
         fs.writeFileSync(settingPath, updatedData, 'utf8')
         log('setSetting', k, v, 'OK')
     } catch (err) {
-        error(err.toString())
-        error('setSetting error')
+        error('setSetting error', err.toString())
     }
 }
 
 // 选取壁纸图片
 const chooseImage = () => {
-    dialog.showOpenDialog({
-        properties: ['openFile'],
-        filters: [
-            { name: 'Images', extensions: ['jpg', 'png', 'gif', 'webp'] },
-            { name: 'All Files', extensions: ['*'] }
-        ]
-    }).then(result => {
-        try {
-            let imagePath = result.filePaths[0]
-            if (!imagePath) {
-                return
-            }
-            imagePath = imagePath.replaceAll('\\', '/')
-            setSetting("--tg-container-image", `url("local:///${imagePath}")`)
-            log("chooseImage setsetting, OK")
+    dialog
+        .showOpenDialog({
+            properties: ['openFile'],
+            filters: [
+                { name: 'Images', extensions: ['jpg', 'png', 'gif', 'webp'] },
+                { name: 'All Files', extensions: ['*'] },
+            ],
+        })
+        .then((result) => {
+            try {
+                let imagePath = result.filePaths[0]
+                if (!imagePath) {
+                    return
+                }
+                imagePath = imagePath.replaceAll('\\', '/')
+                setSetting('--tg-container-image', `url("local:///${imagePath}")`)
+                log('chooseImage setsetting, OK')
 
-            // 通知renderer刷新设置
-            if (!mainWindow.isDestroyed()) {
-                mainWindow.webContents.send("LiteLoader.telegram_theme.updateSetting", "--tg-container-image", `url("local:///${imagePath}")`);
-                log("chooseImage, OK")
-            } else {
-                error('chooseImage mainWindow isDestroyed')
+                // 通知renderer刷新设置
+                if (!mainWindow.isDestroyed()) {
+                    mainWindow.webContents.send(
+                        'LiteLoader.telegram_theme.updateSetting',
+                        '--tg-container-image',
+                        `url("local:///${imagePath}")`,
+                    )
+                    log('chooseImage, OK')
+                } else {
+                    error('chooseImage mainWindow isDestroyed')
+                }
+            } catch (err) {
+                error('chooseImage error', err.toString())
             }
-        } catch (err) {
-            error(err)
-            error('chooseImage error')
-        }
-    }).catch(err => {
-        error(err)
-        error("chooseImage, error")
-    })
+        })
+        .catch((err) => {
+            error('chooseImage, error', err.toString())
+        })
 }
 
 ipcMain.handle('LiteLoader.telegram_theme.getSetting', async () => {
     return await getSetting()
 })
-ipcMain.on('LiteLoader.telegram_theme.setSetting', (event, k, v) => {
+ipcMain.on('LiteLoader.telegram_theme.setSetting', (_, k, v) => {
     setSetting(k, v)
 })
-ipcMain.on('LiteLoader.telegram_theme.chooseImage', (event, k, v) => {
+ipcMain.on('LiteLoader.telegram_theme.chooseImage', () => {
     chooseImage()
 })
-ipcMain.on("LiteLoader.telegram_theme.logToMain", (event, ...args) => {
+ipcMain.on('LiteLoader.telegram_theme.logToMain', (_, ...args) => {
     log('[renderer]', ...args)
 })
-ipcMain.on("LiteLoader.telegram_theme.errorToMain", (event, ...args) => {
+ipcMain.on('LiteLoader.telegram_theme.errorToMain', (_, ...args) => {
     error('[renderer]', ...args)
 })
 
-
-module.exports.onBrowserWindowCreated = window => {
+module.exports.onBrowserWindowCreated = (window) => {
     initSetting()
 
     // 监听页面加载完成，捕获mainWindow
-    window.webContents.on("did-stop-loading", () => {
+    window.webContents.on('did-stop-loading', () => {
         log(window.webContents.getURL())
-        if (window.webContents.getURL().includes("#/main/message")) {
+        if (window.webContents.getURL().includes('#/main/message')) {
             mainWindow = window
             log('mainWindow catched')
         }
@@ -201,14 +193,13 @@ module.exports.onBrowserWindowCreated = window => {
     nativeTheme.on('updated', () => {
         try {
             if (mainWindow && !mainWindow.isDestroyed()) {
-                mainWindow.webContents.send("LiteLoader.telegram_theme.updateAllSetting", getCurrTheme())
+                mainWindow.webContents.send('LiteLoader.telegram_theme.updateAllSetting', getCurrTheme())
                 log('theme change detected')
             } else {
                 error('theme change, mainWindow not exist')
             }
         } catch (err) {
-            error(err)
-            error('nativeTheme.on error')
+            error('nativeTheme.on error', err)
         }
     })
 }

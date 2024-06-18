@@ -44,8 +44,7 @@ class IPC {
         try {
             return await telegram_theme.getSetting()
         } catch (err) {
-            error(err.toString())
-            error(`getSetting error`)
+            error(`getSetting error`, err.toString())
             return null
         }
     }
@@ -55,8 +54,7 @@ class IPC {
         try {
             telegram_theme.setSetting(k.toString(), v.toString())
         } catch (err) {
-            error(err.toString())
-            error(`setSetting error`)
+            error(`setSetting error`, err.toString())
         }
     }
 
@@ -188,8 +186,7 @@ const adjustContactWidth = () => {
             }, 50)
         })
     } catch (err) {
-        error(err.toString())
-        error('adjustContactWidth error')
+        error('adjustContactWidth error', err.toString())
     }
 }
 
@@ -252,7 +249,7 @@ const concatMsg = () => {
                 if (usernameUpper) {
                     nameArr[upperIndex] = usernameUpper
                 }
-            } catch (err) {
+            } catch {
                 // error(err)
             }
         }
@@ -298,7 +295,7 @@ const concatMsg = () => {
                     avatar.style.bottom = '0'
                     avatar.style.position = 'absolute'
                 })
-            } catch (err) {
+            } catch {
                 // error(err)
             }
         }
@@ -354,8 +351,7 @@ const onMessageCreate = async () => {
                 document.body.style.setProperty(k, v)
                 // log('set body style', k, v)
             } catch (err) {
-                error(err)
-                error('channel.onmessage error')
+                error('channel.onmessage error', err)
             }
         }
     }
@@ -379,8 +375,7 @@ try {
         }
     }
 } catch (err) {
-    error(err.toString())
-    error('main, ERROR')
+    error('main, ERROR', err.toString())
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -697,8 +692,7 @@ const onSettingCreate = async (view) => {
             log(`create list ${listTitle}, ${settingItemLists[listTitle].length} items`)
         }
     } catch (err) {
-        error(err)
-        error('onSettingCreate, error')
+        error('onSettingCreate, error', err.toString())
     }
 }
 

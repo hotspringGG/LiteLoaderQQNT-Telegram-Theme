@@ -1,0 +1,20 @@
+{
+    "name": "telegram-theme",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "festoney8",
+    "license": "MIT",
+    "devDependencies": {
+        "@eslint/js": "^9.5.0",
+        "eslint": "^9.5.0",
+        "eslint-config-prettier": "^9.1.0",
+        "globals": "^15.6.0",
+        "prettier": "3.3.2"
+    }
+}

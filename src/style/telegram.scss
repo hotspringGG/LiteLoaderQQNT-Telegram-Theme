@@ -6,25 +6,25 @@
         // 防止被tab-container的backdrop-filter影响
         z-index: 1;
 
-        & .sidebar-nav {
+        .sidebar-nav {
             background-color: var(--tg-sidebar-bg-color) !important;
 
-            & .sidebar-wrapper {
-                & .sidebar__upper {
+            .sidebar-wrapper {
+                .sidebar__upper {
                     // logo
                     .qq-logo {
                         display: none;
                     }
 
                     // 头像
-                    & .sidebar__avatar {
+                    .sidebar__avatar {
                         // 放大倍率
                         zoom: var(--tg-sidebar-avatar-zoom);
                     }
 
                     // 中栏按钮
-                    & .sidebar__nav {
-                        & .nav-item {
+                    .sidebar__nav {
+                        .nav-item {
                             width: var(--tg-sidebar-width);
                             height: var(--tg-sidebar-width);
                             margin: 0;
@@ -35,9 +35,9 @@
                             }
 
                             // 功能按钮
-                            & .sidebar-tooltips {
-                                & .tab-item {
-                                    & .tab-item-mask {
+                            .sidebar-tooltips {
+                                .tab-item {
+                                    .tab-item-mask {
                                         // 蒙版，控制hover时背景色
                                         opacity: 0 !important;
 
@@ -47,18 +47,18 @@
                                         }
                                     }
 
-                                    & .tab-item-img {
+                                    .tab-item-img {
                                         zoom: var(--tg-sidebar-nav-item-zoom);
 
                                         &.tab-item-img-highlight {
-                                            & .tab-item-img-mask {
+                                            .tab-item-img-mask {
                                                 // 选中时，高亮icon，颜色填充
                                                 background-color: var(--tg-sidebar-nav-item-selected-icon-color);
                                             }
                                         }
 
                                         &.tab-item-img-normal {
-                                            & .q-icon {
+                                            .q-icon {
                                                 // 未选中时，普通icon，只有线条
                                                 color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                             }
@@ -68,13 +68,13 @@
                             }
 
                             // 未读提示泡
-                            & sub.q-badge-sub {
+                            sub.q-badge-sub {
                                 zoom: 1.15;
                             }
 
                             // 更多按钮
-                            & .more-item {
-                                & .q-icon {
+                            .more-item {
+                                .q-icon {
                                     // 未选中时，普通icon，只有线条
                                     color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                 }
@@ -84,13 +84,13 @@
                 }
 
                 // 底部按钮
-                & .sidebar__lower {
-                    & .func-menu {
-                        & .func-menu__item_wrap {
+                .sidebar__lower {
+                    .func-menu {
+                        .func-menu__item_wrap {
                             // 功能按钮项
-                            & .func-menu__item {
-                                & .icon-item {
-                                    & .q-icon {
+                            .func-menu__item {
+                                .icon-item {
+                                    .q-icon {
                                         // 未选中时，普通icon，只有线条
                                         color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                     }
@@ -108,17 +108,17 @@
 @mixin contact() {
     .recent-contact {
         // 顶部bar
-        & .contact-top-bar {
+        .contact-top-bar {
             padding: 28px 12px 10px 12px;
             background-color: var(--tg-contact-top-bar-bg-color);
             // 搜索框
-            & .main-search {
+            .main-search {
                 border-radius: 100px;
                 overflow: hidden;
 
-                & .search {
-                    & .search-input {
-                        & input.q-input__inner {
+                .search {
+                    .search-input {
+                        input.q-input__inner {
                             // 搜索框颜色
                             background-color: var(--tg-contact-search-bg-color);
                             // 选中后border和radius
@@ -127,12 +127,12 @@
                         }
                     }
                 }
-                & .search-result {
+                .search-result {
                     --side-list-bg: var(--tg-contact-top-bar-bg-color);
                 }
             }
 
-            & .contact-adder-btn {
+            .contact-adder-btn {
                 // 加号按钮
                 border-radius: 100px;
                 background-color: var(--tg-contact-search-bg-color);
@@ -140,16 +140,16 @@
         }
 
         // 列表区域
-        & .list-toggler {
+        .list-toggler {
             background-color: var(--tg-contact-list-item-bg-color);
             // 会话列表
-            & .viewport-list__inner {
+            .viewport-list__inner {
                 // 会话项
-                & .list-item {
+                .list-item {
                     background-color: var(--tg-contact-list-item-bg-color);
                     // 置顶时，默认颜色不同
                     &.recent-contact-item--top {
-                        & .list-item__container {
+                        .list-item__container {
                             background-color: var(--tg-contact-list-item-top-bg-color);
                             &:hover {
                                 background-color: var(--tg-contact-list-item-hover-bg-color);
@@ -159,17 +159,17 @@
 
                     // 未选中时
                     &:not(.list-item--selected) {
-                        & .list-item__container {
+                        .list-item__container {
                             &:hover {
                                 background-color: var(--tg-contact-list-item-hover-bg-color);
                             }
-                            & .list-item__content {
+                            .list-item__content {
                                 // 内边距
                                 padding: 12px 14px !important;
                                 // 头像
-                                & .list-item__avatar {
-                                    & .avatar,
-                                    & .recent-contact-item__phone {
+                                .list-item__avatar {
+                                    .avatar,
+                                    .recent-contact-item__phone {
                                         // 头像图片
                                         height: var(--tg-contact-list-item-avatar-size) !important;
                                         width: var(--tg-contact-list-item-avatar-size) !important;
@@ -178,21 +178,21 @@
                                 }
 
                                 // 信息
-                                & .list-item__info {
+                                .list-item__info {
                                     // 去除position, 用于气泡定位
                                     position: unset !important;
 
                                     // 标题行
-                                    & .list-item__title {
+                                    .list-item__title {
                                         font-size: var(--tg-contact-list-item-title-font-size) !important;
                                         font-weight: 600 !important;
 
                                         // 用户名
-                                        & .main-info {
+                                        .main-info {
                                             color: var(--tg-contact-list-item-unselected-title-font-color);
                                             // 会员彩色用户名
                                             &.vip-name,
-                                            & .text-ellipsis[style*='color'] {
+                                            .text-ellipsis[style*='color'] {
                                                 color: var(--tg-vip-name-color) !important;
                                                 text-shadow: none !important;
                                                 filter: none !important;
@@ -200,24 +200,24 @@
                                         }
 
                                         // 最后活动时间
-                                        & .secondary-info {
+                                        .secondary-info {
                                             // 时间文字
                                             font-size: var(--tg-contact-list-item-title-font-size) !important;
                                         }
                                     }
 
                                     // 摘要行
-                                    & .list-item__summary {
+                                    .list-item__summary {
                                         margin-top: 8px !important;
                                         // 摘要文字
-                                        & .summary-main {
+                                        .summary-main {
                                             color: var(--tg-contact-list-item-unselected-summary-font-color);
                                             font-size: var(--tg-contact-list-item-summary-font-size) !important;
                                             margin-top: 0 !important;
                                         }
 
                                         // 未读消息数字气泡
-                                        & .summary-bubble {
+                                        .summary-bubble {
                                             // 仿telegram, 气泡随宽度调节变化, 宽度最小时覆盖头像
                                             &:not(:has(.q-icon)) {
                                                 // relative是list-item__container
@@ -228,7 +228,7 @@
                                             }
 
                                             // 普通气泡
-                                            & sub.q-badge__grey {
+                                            sub.q-badge__grey {
                                                 background-color: var(
                                                     --tg-contact-list-item-summary-bubble-color
                                                 ) !important;
@@ -238,7 +238,7 @@
                                             }
 
                                             // 红色气泡
-                                            & sub.q-badge__red {
+                                            sub.q-badge__red {
                                                 padding: 10px 6px !important;
                                                 font-size: 12px;
                                                 border-radius: 100px;
@@ -256,14 +256,14 @@
                         --global-brand_standard: var(--tg-contact-list-item-selected-bg-color);
                         background-color: var(--tg-contact-list-item-selected-bg-color) !important;
 
-                        & .list-item__container {
-                            & .list-item__content {
+                        .list-item__container {
+                            .list-item__content {
                                 // 内边距
                                 padding: 12px 14px !important;
                                 // 头像
-                                & .list-item__avatar {
-                                    & .avatar,
-                                    & .recent-contact-item__phone {
+                                .list-item__avatar {
+                                    .avatar,
+                                    .recent-contact-item__phone {
                                         // 头像图片
                                         height: var(--tg-contact-list-item-avatar-size) !important;
                                         width: var(--tg-contact-list-item-avatar-size) !important;
@@ -272,17 +272,17 @@
                                 }
 
                                 // 信息
-                                & .list-item__info {
+                                .list-item__info {
                                     // 去除position, 用于气泡定位
                                     position: unset !important;
 
                                     // 标题行
-                                    & .list-item__title {
+                                    .list-item__title {
                                         font-size: var(--tg-contact-list-item-title-font-size) !important;
                                         font-weight: 600 !important;
 
                                         // 用户名
-                                        & .main-info {
+                                        .main-info {
                                             --text_primary: var(--tg-contact-list-item-selected-title-font-color);
                                             --on_brand_primary: var(--tg-contact-list-item-selected-title-font-color);
                                             color: var(--tg-contact-list-item-selected-title-font-color) !important;
@@ -292,7 +292,7 @@
                                         }
 
                                         // 最后活动时间
-                                        & .secondary-info {
+                                        .secondary-info {
                                             --on_bg_text: var(--tg-contact-list-item-selected-title-font-color);
                                             // 时间文字
                                             font-size: var(--tg-contact-list-item-title-font-size) !important;
@@ -300,17 +300,17 @@
                                     }
 
                                     // 摘要行
-                                    & .list-item__summary {
+                                    .list-item__summary {
                                         margin-top: 8px !important;
                                         // 摘要文字
-                                        & .summary-main {
+                                        .summary-main {
                                             color: var(--tg-contact-list-item-selected-summary-font-color);
                                             font-size: var(--tg-contact-list-item-summary-font-size) !important;
                                             margin-top: 0 !important;
                                         }
 
                                         // 未读消息数字气泡
-                                        & .summary-bubble {
+                                        .summary-bubble {
                                             --icon_tertiary: var(--tg-contact-list-item-selected-summary-font-color);
                                             // 仿telegram, 气泡随宽度调节变化, 宽度最小时覆盖头像
                                             &:not(:has(.q-icon)) {
@@ -322,7 +322,7 @@
                                             }
 
                                             // 普通气泡
-                                            & sub.q-badge__grey {
+                                            sub.q-badge__grey {
                                                 background-color: var(
                                                     --tg-contact-list-item-summary-bubble-color
                                                 ) !important;
@@ -332,7 +332,7 @@
                                             }
 
                                             // 红色气泡
-                                            & sub.q-badge__red {
+                                            sub.q-badge__red {
                                                 padding: 10px 6px !important;
                                                 font-size: 12px;
                                                 border-radius: 100px;
@@ -346,14 +346,14 @@
                 }
 
                 // 我的手机和群助手，头像
-                & .avatar.avatar-sys {
+                .avatar.avatar-sys {
                     --brand_standard: transparent;
 
                     &:before {
                         background-color: var(--tg-contact-list-item-avatar-sys-bg-color) !important;
                     }
 
-                    & .q-icon {
+                    .q-icon {
                         z-index: 1;
                         zoom: 1.3;
                     }
@@ -361,7 +361,7 @@
             }
 
             // 群助手列表
-            & .group-assistent-list {
+            .group-assistent-list {
                 background-color: var(--tg-contact-list-item-bg-color);
             }
         }
@@ -372,12 +372,12 @@
         background: var(--tg-contact-list-item-bg-color);
 
         // 搜索框
-        & .search-input {
+        .search-input {
             border-radius: 9999px;
         }
 
         // 搜索框旁边的加号按钮
-        & .contact-adder-btn {
+        .contact-adder-btn {
             border-radius: 9999px;
         }
 
@@ -388,7 +388,7 @@
 
         // 联系人列表 item
         .q-collapse-item__header {
-            background-color: var(--tg-contact-list-item-bg-color)
+            background-color: var(--tg-contact-list-item-bg-color);
         }
 
         // 联系人列表 item 选中状态
@@ -400,13 +400,13 @@
     // 联系人右侧内容
     .contact-layout__right-area {
         // 联系人详情
-        & .profile {
+        .profile {
             background-color: var(--tg-contact-list-item-bg-color);
         }
         // 群通知与好友通知
-        & .sys-notify {
+        .sys-notify {
             background-color: var(--tg-contact-list-item-bg-color);
-            & .viewport-list__inner {
+            .viewport-list__inner {
                 background-color: var(--tg-contact-list-item-bg-color);
             }
         }
@@ -431,9 +431,9 @@
         @include panel-header();
         @include more-panel();
         // 主体
-        & .group-panel {
+        .group-panel {
             // 聊天栏
-            & .group-chat {
+            .group-chat {
                 @include chat-msg-area();
                 @include chat-input-area();
             }
@@ -451,24 +451,24 @@
         background-color: var(--tg-group-box-bg-color);
 
         // 展开群成员按钮
-        & .group-box__toggle {
+        .group-box__toggle {
             zoom: 1.35;
-            & .group-box__toggle-bg {
+            .group-box__toggle-bg {
                 color: var(--brand_standard);
             }
-            & .group-box__toggle-button {
+            .group-box__toggle-button {
                 color: white;
             }
         }
 
-        & .group-box__wrapper {
+        .group-box__wrapper {
             // 群成员
-            & .group-member__main {
-                & .group-member-list {
-                    & .group-user__content {
+            .group-member__main {
+                .group-member-list {
+                    .group-user__content {
                         // 隐藏等级，保留自定义tag
-                        & .q-tag {
-                            & .level {
+                        .q-tag {
+                            .level {
                                 display: none;
                             }
                             &.q-tag--grey {
@@ -487,21 +487,21 @@
     .panel-header {
         background-color: var(--tg-panel-header-bg-color) !important;
         // 标题
-        & .panel-header__title {
-            & #chatHeaderContactName,
-            & .chat-header__contact-name {
+        .panel-header__title {
+            #chatHeaderContactName,
+            .chat-header__contact-name {
                 // 群名 or 用户名
                 color: var(--tg-panel-header-title-color);
                 font-size: var(--tg-panel-header-title-font-size);
                 font-weight: bold;
-                & .text-ellipsis[style*='color'] {
+                .text-ellipsis[style*='color'] {
                     color: var(--tg-vip-name-color) !important;
                     text-shadow: none !important;
                     filter: none !important;
                 }
             }
 
-            & #chatHeaderMembersCount {
+            #chatHeaderMembersCount {
                 // 群人数
                 font-size: var(--tg-panel-header-title-font-size);
                 opacity: 0.5;
@@ -509,14 +509,14 @@
         }
 
         // 右栏工具列表
-        & .panel-header__action {
-            & .func-bar {
-                & .bar-icon {
-                    & .q-icon {
+        .panel-header__action {
+            .func-bar {
+                .bar-icon {
+                    .q-icon {
                         color: var(--tg-func-bar-icon-color);
                     }
                     &:hover {
-                        & .q-icon {
+                        .q-icon {
                             color: var(--tg-func-bar-icon-hover-color);
                         }
                     }
@@ -547,7 +547,7 @@
         flex-direction: row;
 
         // 聊天工具栏
-        & .chat-func-bar {
+        .chat-func-bar {
             flex-grow: 0;
             flex-shrink: 0;
             align-self: flex-end;
@@ -559,10 +559,10 @@
             z-index: 6;
 
             // 工具和icon
-            & .func-bar {
+            .func-bar {
                 margin: 0;
 
-                & .bar-icon {
+                .bar-icon {
                     width: calc(var(--tg-chat-input-area-font-size) * 2.2);
                     height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
                     justify-content: center;
@@ -571,17 +571,17 @@
                     cursor: pointer;
 
                     // 隐藏hover时提示
-                    & .q-tooltips__bottom {
+                    .q-tooltips__bottom {
                         display: none;
                     }
 
-                    & .icon-item .q-icon,
-                    & .icon-item .q-icon svg {
+                    .icon-item .q-icon,
+                    .icon-item .q-icon svg {
                         width: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
                         height: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
                         color: var(--tg-func-bar-icon-color);
                     }
-                    & .arrow .q-icon {
+                    .arrow .q-icon {
                         color: var(--tg-func-bar-icon-color);
                         zoom: 1.7;
                     }
@@ -591,9 +591,9 @@
                     }
 
                     &:hover {
-                        & .icon-item .q-icon,
-                        & .icon-item .q-icon svg,
-                        & .arrow .q-icon {
+                        .icon-item .q-icon,
+                        .icon-item .q-icon svg,
+                        .arrow .q-icon {
                             color: var(--tg-func-bar-icon-hover-color);
                         }
                     }
@@ -602,7 +602,7 @@
 
             // chat-func-bar被hover时，显示全部
             &:hover {
-                & .func-bar {
+                .func-bar {
                     display: flex;
                     gap: 5px;
                 }
@@ -610,23 +610,23 @@
 
             // chat-func-bar没有被hover时，只显示表情
             &:not(:hover) {
-                & .func-bar:nth-child(1) .bar-icon:not(:nth-child(1)) {
+                .func-bar:nth-child(1) .bar-icon:not(:nth-child(1)) {
                     display: none !important;
                 }
 
-                & .func-bar:nth-child(2) {
+                .func-bar:nth-child(2) {
                     display: none !important;
                 }
             }
 
             // 永远显示表情按钮
-            & .func-bar:nth-child(1) .bar-icon:nth-child(1) {
+            .func-bar:nth-child(1) .bar-icon:nth-child(1) {
                 display: flex !important;
             }
         }
 
         // 输入框
-        & .msg-input {
+        .msg-input {
             flex-grow: 1;
             flex-shrink: 1;
 
@@ -634,13 +634,13 @@
             height: fit-content;
             max-height: 100%;
 
-            & .qq-editor {
-                & .ck-editor {
+            .qq-editor {
+                .ck-editor {
                     // 输入框动态高度
                     height: fit-content;
 
-                    & .ck-editor__main {
-                        & .ck-content {
+                    .ck-editor__main {
+                        .ck-content {
                             // 文字输入区域，contenteditable div
                             padding: var(--tg-chat-input-area-font-size) 6px var(--tg-chat-input-area-font-size) 0;
                             margin: 0;
@@ -652,19 +652,19 @@
                             color: var(--tg-chat-input-area-font-color) !important;
 
                             // 文字输入框 placeholder
-                            & .ck-placeholder:before {
+                            .ck-placeholder:before {
                                 --qq-editor-placeholder: 'Write a message...';
                                 color: var(--tg-chat-input-area-placeholder-font-color);
                             }
 
                             // 编辑器内at用户
-                            & msg-at {
+                            msg-at {
                                 font-size: var(--tg-chat-input-area-font-size) !important;
                                 line-height: calc(var(--tg-chat-input-area-font-size) + 5px) !important;
                             }
 
                             // 编辑器内图片
-                            & msg-img {
+                            msg-img {
                                 zoom: var(--tg-chat-input-area-image-zoom);
                             }
                         }
@@ -674,7 +674,7 @@
         }
 
         // 输入框操作（关闭、发送）
-        & .operation {
+        .operation {
             margin: 0;
             padding: 0;
             height: unset !important;
@@ -682,23 +682,23 @@
             align-self: flex-end;
 
             // 隐藏关闭
-            & .close {
+            .close {
                 display: none !important;
             }
 
             // 发送按钮，魔改
-            & .send-btn-wrap {
+            .send-btn-wrap {
                 // 分割线
-                & .divider {
+                .divider {
                     display: none !important;
                 }
 
                 // 发送方式
-                & .send-setting__wrapper {
+                .send-setting__wrapper {
                     display: none !important;
                 }
 
-                & > div {
+                > div {
                     width: 100%;
                     height: 100%;
                 }
@@ -722,12 +722,12 @@
                     opacity: 0.3 !important;
                 }
 
-                & .send {
+                .send {
                     padding: inherit !important;
                     width: inherit !important;
                     height: inherit !important;
 
-                    & .send-msg {
+                    .send-msg {
                         color: transparent !important;
                         padding: inherit !important;
                         width: inherit !important;
@@ -738,18 +738,18 @@
         }
 
         // 转发选项菜单（逐条转发、合并转发等），只在转发时显示
-        & ul.forward-ops {
+        ul.forward-ops {
             min-height: 100px;
             max-width: unset;
 
             // 每个转发选项
-            & li {
-                & > button {
+            li {
+                > button {
                     // 功能按钮
                     margin-bottom: 0;
                 }
 
-                & > div {
+                > div {
                     // 功能说明文字
                     font-size: 1.2em;
                 }
@@ -763,14 +763,14 @@
         }
 
         // 音频输入框
-        & .audio-msg-input {
+        .audio-msg-input {
             width: 100%;
 
-            & .micro-icon {
+            .micro-icon {
                 margin: 20px;
             }
 
-            & .key-desc {
+            .key-desc {
                 margin-bottom: 20px;
             }
         }
@@ -786,29 +786,29 @@
         // background: url();
 
         // 视频通话、语音通话
-        & .chat-msg-area__tip--top {
+        .chat-msg-area__tip--top {
             background-color: var(--tg-panel-header-bg-color) !important;
-            // & .av-call-status {
+            // .av-call-status {
             // }
-            // & .av-call-btns {
-            //     & button.q-button {
+            // .av-call-btns {
+            //     button.q-button {
             //     }
             // }
         }
 
         // 聊天列表
-        & .ml-area {
-            & .ml-root {
-                & .ml-list {
+        .ml-area {
+            .ml-root {
+                .ml-list {
                     // 头像吸附
                     overflow: visible;
 
                     // 每行聊天项（虚拟滚动列表，消息排列顺序与dom结构不同）
-                    & .ml-item {
-                        & .message {
+                    .ml-item {
+                        .message {
                             // 聊天时间，聊天提示（撤回消息、禁言等）
-                            & .message__timestamp,
-                            & .gray-tip-message {
+                            .message__timestamp,
+                            .gray-tip-message {
                                 width: fit-content;
                                 margin: 15px auto !important;
                                 color: white !important;
@@ -820,7 +820,7 @@
                                 padding: 0.4em 0.8em !important;
                                 letter-spacing: 1px;
 
-                                & .gray-tip-action {
+                                .gray-tip-action {
                                     color: var(--tg-message-others-highlight-color);
                                 }
                             }
@@ -836,37 +836,37 @@
         }
 
         // 消息向上跳转，含文字，暂不修改样式
-        & .chat-msg-area__tip--top-btn {
+        .chat-msg-area__tip--top-btn {
             &.theme-primary {
                 background-color: var(--tg-panel-tip-primary-bg-color);
-                & .content {
+                .content {
                     margin-left: 0.5em;
                     color: var(--tg-panel-tip-primary-font-color) !important;
                 }
-                & .icon .q-icon {
+                .icon .q-icon {
                     color: white !important;
                 }
             }
             &:not(.theme-primary) {
                 background-color: var(--tg-panel-tip-bg-color);
-                & .content {
+                .content {
                     margin-left: 0.5em;
                     color: var(--tg-panel-tip-font-color) !important;
                 }
             }
         }
         // 向下跳转按钮
-        & .chat-msg-area__tip--bottom {
+        .chat-msg-area__tip--bottom {
             padding: 0;
             width: 45px;
             height: 45px;
             background-color: var(--tg-panel-tip-bg-color);
 
-            & .icon {
+            .icon {
                 zoom: 1.3;
             }
 
-            & .content {
+            .content {
                 margin-left: 0;
                 color: var(--tg-panel-tip-font-color) !important;
             }
@@ -880,9 +880,9 @@
         // 隐藏自己的头像、用户名
         grid-template-columns: auto minmax(20%, 1fr) calc(var(--avatar_size_2) + 8px) auto 0 0;
 
-        & .avatar,
-        & .only-time,
-        & .user-name {
+        .avatar,
+        .only-time,
+        .user-name {
             display: none;
         }
     }
@@ -902,8 +902,8 @@
                 'checkbox . tips tips tips';
             grid-template-columns: auto auto auto calc(var(--avatar_size_2) + 8px) minmax(20%, 1fr);
 
-            & .avatar,
-            & .only-time {
+            .avatar,
+            .only-time {
                 display: none;
             }
         }
@@ -918,20 +918,20 @@
         position: relative;
 
         // 用户名
-        & .user-name {
+        .user-name {
             color: var(--tg-message-others-username-font-color) !important;
             font-weight: bold;
             font-size: var(--tg-message-others-username-font-size) !important;
             margin-bottom: 2px;
             overflow: visible !important;
 
-            & .text-ellipsis {
+            .text-ellipsis {
                 text-shadow: 0 0 5px #00000066;
                 overflow: visible !important;
             }
 
-            & .q-tag {
-                & .level {
+            .q-tag {
+                .level {
                     display: none;
                 }
                 &.q-tag--grey,
@@ -942,9 +942,9 @@
         }
 
         // 头像
-        & .avatar-span {
+        .avatar-span {
             // 强制覆盖大小
-            & .message-container__avatar {
+            .message-container__avatar {
                 width: 40px !important;
                 height: 40px !important;
             }
@@ -958,7 +958,7 @@
             // position: absolute;
             // bottom: 0;
 
-            & .avatar {
+            .avatar {
                 // 底部吸附
                 position: sticky;
                 bottom: 10px;
@@ -966,14 +966,14 @@
         }
 
         // 文字泡
-        & .message-content__wrapper {
+        .message-content__wrapper {
             min-height: unset;
 
             // 转发聊天记录
-            & .forward-msg {
+            .forward-msg {
                 background-color: var(--tg-message-others-forward-msg-bg-color) !important;
 
-                & .text-ellipsis {
+                .text-ellipsis {
                     overflow: hidden;
                 }
             }
@@ -986,15 +986,15 @@
         }
 
         // 状态、下载按钮
-        & .content-status {
+        .content-status {
             zoom: 1.5;
         }
 
         // reaction
-        & .reaction-item-bg--clicked {
+        .reaction-item-bg--clicked {
             opacity: 0.75;
         }
-        & .reaction-content:empty {
+        .reaction-content:empty {
             display: none;
         }
     }
@@ -1022,7 +1022,7 @@
         // 单张图片、单张动图
         &.mix-message__container--pic {
             max-width: calc(var(--img-max-width) * var(--tg-message-others-pic-element-zoom));
-            & .message-content {
+            .message-content {
                 zoom: var(--tg-message-others-pic-element-zoom);
             }
         }
@@ -1033,13 +1033,13 @@
             border-radius: 20px 20px 20px 8px;
 
             // 消息泡贴合图片
-            & .message-content {
+            .message-content {
                 width: min-content;
                 // 最小宽度
                 min-width: calc(10 * var(--tg-message-others-font-size) + 24px);
             }
 
-            & .pic-element {
+            .pic-element {
                 border-radius: 0;
                 padding: 0;
                 margin: 0 auto;
@@ -1047,17 +1047,17 @@
             }
 
             // 文字与气泡间距
-            & .text-element {
+            .text-element {
                 margin: 8px 12px;
                 display: inline-block;
             }
-            & .face-element {
+            .face-element {
                 margin: 1px 12px;
                 display: inline-block;
             }
 
             // 图文混合时内容间距
-            & :is(.face-element, .text-element) {
+            :is(.face-element, .text-element) {
                 &:not(:first-of-type) {
                     margin-left: 1px !important;
                 }
@@ -1074,98 +1074,98 @@
         }
 
         // 回复引用
-        & .reply-element {
+        .reply-element {
             margin: 0 0 8px 0;
             border-radius: 5px 8px 8px 5px;
             border-left: 4px solid var(--tg-message-others-reply-highlight-color);
             background-color: var(--tg-message-others-reply-bg-color);
             cursor: pointer;
 
-            & .reply-title {
+            .reply-title {
                 color: var(--tg-message-others-reply-highlight-color);
                 opacity: unset;
                 font-weight: bold;
-                & .reply-info {
+                .reply-info {
                     font-size: var(--tg-message-others-reply-content-font-size);
                 }
-                & .q-icon {
+                .q-icon {
                     display: none;
                 }
             }
 
-            & .reply-content {
+            .reply-content {
                 color: var(--tg-message-others-reply-content-font-color);
                 font-size: var(--tg-message-others-reply-content-font-size);
                 font-weight: 500;
 
                 // 回复内图片
-                & .pic {
+                .pic {
                     zoom: 1.5;
                 }
             }
         }
 
         // 普通消息 文字内容
-        & .message-content {
+        .message-content {
             font-size: var(--tg-message-others-font-size);
             line-height: calc(var(--tg-message-others-font-size) + 4px);
             flex-direction: column;
 
             // // 文本消息
-            // & .text-element {
+            // .text-element {
             // }
 
             // 普通文字
-            & .text-normal {
+            .text-normal {
                 color: var(--tg-message-others-font-color);
             }
 
             // at @用户名
-            & .text-element--at {
+            .text-element--at {
                 color: var(--tg-message-others-highlight-color) !important;
                 // font-weight: 600;
             }
 
             // url
-            & .text-link {
+            .text-link {
                 color: var(--tg-message-others-url-color);
             }
         }
 
         // 语音消息
-        & .ptt-element {
+        .ptt-element {
             zoom: 1.2;
         }
-        & .ptt-element__button {
+        .ptt-element__button {
             background-color: var(--tg-message-others-highlight-color) !important;
         }
-        & .ptt-element__progress {
-            & .ptt-element__progress-item {
+        .ptt-element__progress {
+            .ptt-element__progress-item {
                 background-color: var(--tg-message-others-highlight-color) !important;
             }
         }
-        & .ptt-element__duration span {
+        .ptt-element__duration span {
             font-size: 12px;
             font-weight: bold;
             color: var(--tg-message-others-highlight-color);
         }
 
         // 语音转文字
-        & .ptt-element__bottom-area-text {
+        .ptt-element__bottom-area-text {
             color: var(--tg-message-others-font-color);
         }
-        & .ptt-element__bottom-area-icon {
-            & .q-icon {
+        .ptt-element__bottom-area-icon {
+            .q-icon {
                 color: var(--tg-message-others-highlight-color);
             }
         }
 
         // 语音通话、视频通话
-        & .av-msg {
-            & .q-icon {
+        .av-msg {
+            .q-icon {
                 color: var(--tg-message-others-highlight-color);
             }
-            & span {
+            span {
                 color: var(--tg-message-others-font-color);
             }
         }
@@ -1178,14 +1178,14 @@
         padding: 0 20px 0 20px !important;
 
         // 文字泡
-        & .message-content__wrapper {
+        .message-content__wrapper {
             min-height: unset;
 
             // 转发聊天记录
-            & .forward-msg {
+            .forward-msg {
                 background-color: var(--tg-message-self-forward-msg-bg-color) !important;
 
-                & .text-ellipsis {
+                .text-ellipsis {
                     overflow: hidden;
                 }
             }
@@ -1198,15 +1198,15 @@
         }
 
         // 状态、下载按钮
-        & .content-status {
+        .content-status {
             zoom: 1.5;
         }
 
         // reaction
-        & .reaction-item-bg--clicked {
+        .reaction-item-bg--clicked {
             opacity: 0.75;
         }
-        & .reaction-content:empty {
+        .reaction-content:empty {
             display: none;
         }
     }
@@ -1235,7 +1235,7 @@
         // 单张图片、单张动图
         &.mix-message__container--pic {
             max-width: calc(var(--img-max-width) * var(--tg-message-self-pic-element-zoom));
-            & .message-content {
+            .message-content {
                 zoom: var(--tg-message-self-pic-element-zoom);
             }
         }
@@ -1246,13 +1246,13 @@
             border-radius: 20px 20px 8px 20px;
 
             // 消息泡贴合图片
-            & .message-content {
+            .message-content {
                 width: min-content;
                 // 最小宽度
                 min-width: calc(10 * var(--tg-message-self-font-size) + 24px);
             }
 
-            & .pic-element {
+            .pic-element {
                 border-radius: 0;
                 padding: 0;
                 margin: 0 auto;
@@ -1260,17 +1260,17 @@
             }
 
             // 文字与气泡间距
-            & .text-element {
+            .text-element {
                 margin: 8px 12px;
                 display: inline-block;
             }
-            & .face-element {
+            .face-element {
                 margin: 1px 12px;
                 display: inline-block;
             }
 
             // 图文混合时内容间距
-            & :is(.face-element, .text-element) {
+            :is(.face-element, .text-element) {
                 &:not(:first-of-type) {
                     margin-left: 1px !important;
                 }
@@ -1287,91 +1287,91 @@
         }
 
         // 回复引用
-        & .reply-element {
+        .reply-element {
             margin: 0 0 8px 0;
             border-radius: 5px 8px 8px 5px;
             border-left: 4px solid var(--tg-message-self-reply-highlight-color);
             background-color: var(--tg-message-self-reply-bg-color);
             cursor: pointer;
 
-            & .reply-title {
+            .reply-title {
                 color: var(--tg-message-self-reply-highlight-color);
                 opacity: unset;
                 font-weight: bold;
-                & .reply-info {
+                .reply-info {
                     font-size: var(--tg-message-self-reply-content-font-size);
                 }
-                & .q-icon {
+                .q-icon {
                     display: none;
                 }
             }
 
-            & .reply-content {
+            .reply-content {
                 color: var(--tg-message-self-reply-content-font-color);
                 font-size: var(--tg-message-self-reply-content-font-size);
                 font-weight: 500;
 
                 // 回复内图片
-                & .pic {
+                .pic {
                     zoom: 1.5;
                 }
             }
         }
 
         // 普通消息 文字内容
-        & .message-content {
+        .message-content {
             font-size: var(--tg-message-self-font-size);
             line-height: calc(var(--tg-message-self-font-size) + 4px);
             flex-direction: column;
 
             // 文本消息
-            // & .text-element {
+            // .text-element {
             // }
 
             // 普通文字
-            & .text-normal {
+            .text-normal {
                 color: var(--tg-message-self-font-color);
             }
 
             // at @用户名
-            & .text-element--at {
+            .text-element--at {
                 color: var(--tg-message-self-highlight-color);
                 // font-weight: 600;
             }
 
             // url
-            & .text-link {
+            .text-link {
                 color: var(--tg-message-self-url-color);
             }
         }
 
         // 语音消息
-        & .ptt-element {
+        .ptt-element {
             zoom: 1.2;
 
-            & .ptt-element__button {
+            .ptt-element__button {
                 background-color: var(--tg-message-self-highlight-color) !important;
             }
 
-            & .ptt-element__progress {
-                & .ptt-element__progress-item {
+            .ptt-element__progress {
+                .ptt-element__progress-item {
                     background-color: var(--tg-message-self-highlight-color) !important;
                 }
             }
 
-            & .ptt-element__duration span {
+            .ptt-element__duration span {
                 font-size: 12px;
                 font-weight: bold;
                 color: var(--tg-message-self-highlight-color);
             }
         }
         // 语音转文字
-        & .ptt-element__bottom-area {
-            & .ptt-element__bottom-area-text {
+        .ptt-element__bottom-area {
+            .ptt-element__bottom-area-text {
                 color: var(--tg-message-self-font-color);
             }
-            & .ptt-element__bottom-area-icon {
-                & .q-icon {
+            .ptt-element__bottom-area-icon {
+                .q-icon {
                     color: var(--tg-message-self-highlight-color);
                 }
             }
@@ -1379,11 +1379,11 @@
 
         // 语音通话、视频通话
         &.av-message__container {
-            & .av-msg {
-                & .q-icon {
+            .av-msg {
+                .q-icon {
                     color: var(--tg-message-self-highlight-color);
                 }
-                & span {
+                span {
                     color: var(--tg-message-self-font-color);
                 }
             }
@@ -1396,30 +1396,30 @@
     // 私聊
     .ml-list:not(:has(.user-name)) {
         // 去除消息距离
-        & .ml-item .message,
-        & .ml-item .message:last-child {
+        .ml-item .message,
+        .ml-item .message:last-child {
             padding-bottom: 0;
             margin-top: 3px;
         }
         // 分隔他人消息和自己消息间隔
-        & .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
-        & .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
-            & .message {
+        .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
+        .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
+            .message {
                 margin-bottom: 20px;
             }
         }
         // 匹配自己的连串消息，调节气泡（第一条除外）
-        & .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
-            & .message:not(:has(.message__timestamp)) {
-                & .msg-content-container {
+        .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
+            .message:not(:has(.message__timestamp)) {
+                .msg-content-container {
                     border-top-right-radius: 8px !important;
                 }
             }
         }
         // 匹配他人的连串消息，调节气泡（第一条除外）
-        & .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
-            & .message:not(:has(.message__timestamp)) {
-                & .msg-content-container {
+        .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
+            .message:not(:has(.message__timestamp)) {
+                .msg-content-container {
                     border-top-left-radius: 8px !important;
                 }
             }
@@ -1428,28 +1428,28 @@
     // 群聊
     .ml-list:has(.user-name) {
         // 消息距离
-        & .ml-item .message,
-        & .ml-item .message:last-child {
+        .ml-item .message,
+        .ml-item .message:last-child {
             padding-bottom: 0;
         }
         // 分隔他人消息和自己消息间隔
-        & .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
-        & .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
-            & .message {
+        .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
+        .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
+            .message {
                 margin-bottom: 20px;
             }
         }
         // 匹配自己的连串消息，调节气泡（第一条除外）
-        & .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
-            & .message:not(:has(.message__timestamp)) {
+        .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
+            .message:not(:has(.message__timestamp)) {
                 margin-top: 3px;
-                & .msg-content-container {
+                .msg-content-container {
                     border-top-right-radius: 8px !important;
                 }
             }
         }
-        & .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
-            & .message:not(:has(.message__timestamp)) {
+        .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
+            .message:not(:has(.message__timestamp)) {
                 margin-top: 20px;
             }
         }
@@ -1505,28 +1505,28 @@
 // 补丁
 @mixin patch() {
     .tab-container {
-        & .contact-layout::after,
-        & .message-panel::after {
+        .contact-layout::after,
+        .message-panel::after {
             opacity: 1 !important;
         }
     }
     // 工具箱消息发送时间
     .message-container:not(.message-container--self) {
-        & .lite-tools-slot {
+        .lite-tools-slot {
             &.embed-slot {
-                & .lite-tools-time {
+                .lite-tools-time {
                     opacity: 0.8;
                     color: var(--tg-message-others-font-color) !important;
                 }
             }
             &.inside-slot {
-                & .lite-tools-time {
+                .lite-tools-time {
                     opacity: 1;
                     color: white !important;
                 }
             }
             &.outside-slot {
-                & .lite-tools-time {
+                .lite-tools-time {
                     opacity: 0.8;
                     color: var(--tg-message-others-font-color) !important;
                 }
@@ -1534,31 +1534,25 @@
         }
     }
     .message-container.message-container--self {
-        & .lite-tools-slot {
-            &.embed-slot {
-                & .lite-tools-time {
-                    opacity: 0.8;
-                    color: var(--tg-message-self-font-color);
-                }
+        .lite-tools-slot {
+            &.embed-slot .lite-tools-time {
+                opacity: 0.8;
+                color: var(--tg-message-self-font-color);
             }
-            &.inside-slot {
-                & .lite-tools-time {
-                    opacity: 1;
-                    color: white;
-                }
+            &.inside-slot .lite-tools-time {
+                opacity: 1;
+                color: white;
             }
-            &.outside-slot {
-                & .lite-tools-time {
-                    opacity: 0.8;
-                    color: var(--tg-message-self-font-color);
-                }
+            &.outside-slot .lite-tools-time {
+                opacity: 0.8;
+                color: var(--tg-message-self-font-color);
             }
         }
     }
     .message-container {
         // 图文混合气泡、图图混合气泡
-        & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
-            & .lite-tools-slot.embed-slot {
+        .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
+            .lite-tools-slot.embed-slot {
                 position: absolute;
                 bottom: 4px;
                 right: 4px;
@@ -1569,7 +1563,7 @@
                 line-height: 14px;
                 border-radius: 4px;
                 visibility: hidden;
-                & .lite-tools-time {
+                .lite-tools-time {
                     text-align: center;
                     padding: 4px 6px;
                     color: white;
@@ -1594,16 +1588,16 @@
                         opacity: unset;
                     }
                 }
-                & .lite-tools-recall {
+                .lite-tools-recall {
                     padding: 4px 6px;
                 }
             }
         }
         &:hover {
-            & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
-                & .lite-tools-slot.embed-slot {
+            .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
+                .lite-tools-slot.embed-slot {
                     visibility: visible;
-                    & .lite-tools-time {
+                    .lite-tools-time {
                         color: white;
                         opacity: 1;
                         display: block;
@@ -1622,7 +1616,7 @@
                             opacity: unset;
                         }
                     }
-                    & .lite-tools-recall:not(:last-child) {
+                    .lite-tools-recall:not(:last-child) {
                         padding-right: 0;
                     }
                 }
@@ -1631,9 +1625,9 @@
 
         // 他人消息时间颜色
         &:not(.message-container--self) {
-            & .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
-                & .lite-tools-slot.embed-slot {
-                    & .lite-tools-time {
+            .mix-message__container:not(.mix-message__container--pic):has(.pic-element) {
+                .lite-tools-slot.embed-slot {
+                    .lite-tools-time {
                         color: white !important;
                     }
                 }
@@ -1648,14 +1642,14 @@
 
     // 页面控制按钮
     .window-control-area {
-        & .q-icon,
-        & div {
+        .q-icon,
+        div {
             color: var(--tg-window-control-area-button-color);
             &:hover {
                 color: var(--tg-window-control-area-button-hover-color);
             }
         }
-        & .narrow-toggler {
+        .narrow-toggler {
             &:not(.isDark) img {
                 filter: opacity(0.35);
             }
@@ -1667,7 +1661,7 @@
 
     // 演示模式按钮
     #demoModeBtn {
-        & i {
+        i {
             color: var(--tg-sidebar-nav-item-unselected-icon-color) !important;
         }
     }
