@@ -825,6 +825,7 @@
         grid-template-columns: auto minmax(20%, 1fr) calc(var(--avatar_size_2) + 8px) auto 0 0;
 
         & .avatar,
+        & .only-time,
         & .user-name {
             display: none;
         }
@@ -845,7 +846,8 @@
                 'checkbox . tips tips tips';
             grid-template-columns: auto auto auto calc(var(--avatar_size_2) + 8px) minmax(20%, 1fr);
 
-            & .avatar {
+            & .avatar,
+            & .only-time {
                 display: none;
             }
         }
@@ -961,9 +963,12 @@
             border-radius: 20px 20px 20px 8px;
         }
 
-        // 图片、动图
+        // 单张图片、单张动图
         &.mix-message__container--pic {
-            zoom: var(--tg-message-self-pic-element-zoom);
+            max-width: calc(var(--img-max-width) * var(--tg-message-others-pic-element-zoom));
+            & .message-content {
+                zoom: var(--tg-message-others-pic-element-zoom);
+            }
         }
 
         // 图文混合气泡, 图图混合气泡
@@ -995,15 +1000,7 @@
                 display: inline-block;
             }
 
-            // 性能稀烂
-            // & :is(.face-element, .text-element) {
-            //     & + :is(.face-element, .text-element) {
-            //         margin-left: 1px !important;
-            //     }
-            //     &:has(+ :is(.face-element, .text-element)) {
-            //         margin-right: 1px !important;
-            //     }
-            // }
+            // 图文混合时内容间距
             & :is(.face-element, .text-element) {
                 &:not(:first-of-type) {
                     margin-left: 1px !important;
@@ -1179,9 +1176,12 @@
             border-radius: 20px 20px 8px 20px;
         }
 
-        // 图片、动图
+        // 单张图片、单张动图
         &.mix-message__container--pic {
-            zoom: var(--tg-message-self-pic-element-zoom);
+            max-width: calc(var(--img-max-width) * var(--tg-message-self-pic-element-zoom));
+            & .message-content {
+                zoom: var(--tg-message-self-pic-element-zoom);
+            }
         }
 
         // 图文混合气泡, 图图混合气泡
@@ -1212,14 +1212,8 @@
                 margin: 1px 12px;
                 display: inline-block;
             }
-            // & :is(.face-element, .text-element) {
-            //     & + :is(.face-element, .text-element) {
-            //         margin-left: 1px !important;
-            //     }
-            //     &:has(+ :is(.face-element, .text-element)) {
-            //         margin-right: 1px !important;
-            //     }
-            // }
+
+            // 图文混合时内容间距
             & :is(.face-element, .text-element) {
                 &:not(:first-of-type) {
                     margin-left: 1px !important;
