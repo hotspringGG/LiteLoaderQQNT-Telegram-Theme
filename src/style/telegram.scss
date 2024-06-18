@@ -367,7 +367,7 @@
         }
     }
 
-    // 联系人页面
+    // 联系人侧边栏
     .contact-layout__left-area .contact {
         background: var(--tg-contact-list-item-bg-color);
 
@@ -376,9 +376,33 @@
             background-color: var(--tg-contact-list-item-bg-color);
         }
 
+        // 联系人列表 item
         .q-collapse-item__header {
             background-color: var(--tg-contact-list-item-bg-color)
         }
+
+        // 联系人列表 item 选中状态
+        .list-item--selected .list-item__content {
+            background-color: var(--tg-contact-list-item-selected-bg-color);
+        }
+    }
+
+    // 联系人右侧内容
+    .contact-layout__right-area {
+        // 联系人详情
+        & .profile {
+            background-color: var(--tg-contact-list-item-bg-color);
+        }
+    }
+
+    // 分割线的颜色
+    .contact-layout .resize-handler.ew div {
+        background-color: var(--tg-contact-list-item-bg-color);
+    }
+
+    // 第一条分割线不显示
+    .contact-layout .resize-handler.ew div:first-child {
+        background-color: transparent !important;
     }
 }
 
