@@ -374,6 +374,7 @@
     .aio {
         // 顶栏
         @include panel-header();
+        @include more-panel();
         // 主体
         & .group-panel {
             // 聊天栏
@@ -468,6 +469,13 @@
                 }
             }
         }
+    }
+}
+
+// 聊天栏 右侧“更多”面板 保持和header颜色一致
+@mixin more-panel() {
+    .more-panel .side-panel {
+        background-color: var(--tg-panel-header-bg-color);
     }
 }
 
