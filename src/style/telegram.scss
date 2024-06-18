@@ -366,6 +366,20 @@
             }
         }
     }
+
+    // 联系人页面
+    .contact-layout__left-area .contact {
+        background: var(--tg-contact-list-item-bg-color);
+
+        // 标签栏
+        .tab-header {
+            background-color: var(--tg-contact-list-item-bg-color);
+        }
+
+        .q-collapse-item__header {
+            background-color: var(--tg-contact-list-item-bg-color)
+        }
+    }
 }
 
 // 聊天栏、编辑器、群成员等
