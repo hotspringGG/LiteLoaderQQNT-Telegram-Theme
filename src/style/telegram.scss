@@ -501,6 +501,8 @@
         // 右栏工具列表
         & .panel-header__action {
             & .func-bar {
+                // 工具栏图标隔开一点
+                gap: 5px;
                 & .bar-icon {
                     & .q-icon {
                         color: var(--tg-func-bar-icon-color);
