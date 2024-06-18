@@ -366,6 +366,61 @@
             }
         }
     }
+
+    // 联系人侧边栏
+    .contact-layout__left-area .contact {
+        background: var(--tg-contact-list-item-bg-color);
+
+        // 搜索框
+        & .search-input {
+            border-radius: 9999px;
+        }
+
+        // 搜索框旁边的加号按钮
+        & .contact-adder-btn {
+            border-radius: 9999px;
+        }
+
+        // 标签栏
+        .tab-header {
+            background-color: var(--tg-contact-list-item-bg-color);
+        }
+
+        // 联系人列表 item
+        .q-collapse-item__header {
+            background-color: var(--tg-contact-list-item-bg-color)
+        }
+
+        // 联系人列表 item 选中状态
+        .list-item--selected .list-item__content {
+            background-color: var(--tg-contact-list-item-selected-bg-color);
+        }
+    }
+
+    // 联系人右侧内容
+    .contact-layout__right-area {
+        // 联系人详情
+        & .profile {
+            background-color: var(--tg-contact-list-item-bg-color);
+        }
+        // 群通知与好友通知
+        & .sys-notify {
+            background-color: var(--tg-contact-list-item-bg-color);
+            & .viewport-list__inner {
+                background-color: var(--tg-contact-list-item-bg-color);
+            }
+        }
+    }
+
+    // QQ的联系人面板的分割线有三条，这里将全部分割线的颜色先更改成了联系人侧边栏的背景色
+    .contact-layout .resize-handler.ew div {
+        background-color: var(--tg-contact-list-item-bg-color);
+    }
+
+    // 再将第一条分割线取消显示，否则会有一条线覆盖在联系人侧边栏上
+    .contact-layout .resize-handler.ew div:first-child {
+        background-color: transparent !important;
+    }
 }
 
 // 聊天栏、编辑器、群成员等
@@ -549,6 +604,7 @@
             &:hover {
                 & .func-bar {
                     display: flex;
+                    gap: 5px;
                 }
             }
 
@@ -1646,6 +1702,20 @@
     }
     .q-context-menu-item:has(.q-icon path[d^='M2.14649'], .q-icon use[*|href$='recall_24']) {
         color: var(--tg-context-menu-withdraw-font-color) !important;
+    }
+    // 气泡菜单，改为和TG一样的圆角
+    .q-context-menu .menu-stickers-wrapper .menu-stickers {
+        border-radius: 9999px;
+        .menu-stickers-item {
+            border-radius: 9999px;
+            // hover效果
+            &:hover {
+                transform: scale(1.2);
+                transition: transform 0.2s;
+                background-color: transparent !important;
+                cursor: pointer;
+            }
+        }
     }
 }
 
