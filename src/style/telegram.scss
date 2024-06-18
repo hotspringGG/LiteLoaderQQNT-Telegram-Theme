@@ -371,6 +371,16 @@
     .contact-layout__left-area .contact {
         background: var(--tg-contact-list-item-bg-color);
 
+        // 搜索框
+        & .search-input {
+            border-radius: 9999px;
+        }
+
+        // 搜索框旁边的加号按钮
+        & .contact-adder-btn {
+            border-radius: 9999px;
+        }
+
         // 标签栏
         .tab-header {
             background-color: var(--tg-contact-list-item-bg-color);
