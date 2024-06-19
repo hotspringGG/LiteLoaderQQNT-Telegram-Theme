@@ -563,13 +563,18 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         flex-grow: 0;
         flex-shrink: 0;
         align-self: flex-end;
-        margin: 0 8px;
-        padding: 0;
+        margin: 0;
+        padding: 0 8px;
         z-index: 6;
-        width: $func-bar-icon-size;
+        width: calc($func-bar-icon-size + 16px);
         max-width: fit-content;
-        transition: width 0.35s linear;
+        transition: width 0.35s ease;
         overflow: hidden;
+
+        // 防挡本地表情菜单
+        &:has(.lite-tools-local-emoticons-main.show) {
+            overflow: visible;
+        }
 
         // hover时展开全部按钮
         &:has(.func-bar:hover) {
@@ -581,19 +586,12 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             width: fit-content;
             margin: 0;
             padding: 0;
-            gap: 10px;
-            &:last-child {
-                // 补齐gap
-                padding-left: 10px;
-            }
 
             .bar-icon {
                 width: fit-content;
                 height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
                 justify-content: center;
                 margin: 0;
-                padding: 0;
-                gap: 10px;
                 cursor: pointer;
 
                 // 隐藏hover时提示
@@ -629,11 +627,19 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                     transition: transform 0.1s;
                     color: var(--tg-func-bar-icon-hover-color) !important;
                 }
+                // 截图和文件发送 占位div对gap的影响
+                &:has(.arrow) {
+                    margin-right: calc(var(--tg-chat-input-area-font-size) * -0.35);
+                }
             }
-            // 截图和文件发送 占位div对gap的影响
-            > div:empty {
-                margin-left: calc(var(--tg-chat-input-area-font-size) * -0.3 - 10px);
+
+            // icon间距
+            &:first-child > div:not(:first-child):not(:empty),
+            &:last-child > div {
+                // border: 1px red solid;
+                padding-left: 10px !important;
             }
+
             // 其他插件按钮
             @include external-icon();
         }
@@ -644,16 +650,33 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
 @mixin external-icon {
     // lite tools本地表情
     .lite-tools-bar {
-        .lite-tools-q-icon,
-        .lite-tools-q-icon svg {
-            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-        }
+        margin: 0 !important;
+        padding: 0 !important;
+        height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
         .lite-tools-q-icon {
             cursor: pointer;
             color: var(--tg-func-bar-icon-color);
+            width: $func-bar-icon-size !important;
+            height: $func-bar-icon-size !important;
+            padding: 2px;
+            svg {
+                width: 100%;
+                height: 100%;
+            }
             &:hover {
                 color: var(--tg-func-bar-icon-hover-color);
+                transform: scale(1.1);
+                transition: transform 0.1s;
+            }
+        }
+        .lite-tools-q-tooltips__content {
+            display: none;
+        }
+
+        // 右侧时panel位置
+        &:not(.position-left) {
+            .lite-tools-local-emoticons-main.show {
+                transform: translateY(0px) translateX(-50%) scale(1);
             }
         }
     }
@@ -661,17 +684,23 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
     // GPT回复
     .gpt-reply-bar-icon {
         display: flex;
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-        .gpt-reply-q-icon,
-        svg {
-            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-        }
+        margin: 0 !important;
+        padding: 0 !important;
+        height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
         .gpt-reply-q-icon {
+            cursor: pointer;
+            width: calc($func-bar-icon-size - 4px) !important;
+            height: calc($func-bar-icon-size - 4px) !important;
             fill: var(--tg-func-bar-icon-color);
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+            &:hover {
+                fill: var(--tg-func-bar-icon-hover-color);
+                transform: scale(1.1);
+                transition: transform 0.1s;
+            }
         }
         .gpt-reply-q-tooltips__content {
             display: none;
@@ -681,20 +710,24 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
     // deepl翻译
     .deepl-plugin-bar-icon {
         display: flex;
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-        .deepl-plugin-q-icon,
-        svg {
-            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
-            color: var(--tg-func-bar-icon-color);
-        }
+        margin: 0 !important;
+        padding: 0 !important;
+        height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
         .deepl-plugin-q-icon {
+            cursor: pointer;
+            width: calc($func-bar-icon-size - 4px) !important;
+            height: calc($func-bar-icon-size - 4px) !important;
             fill: var(--tg-func-bar-icon-color);
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+            &:hover {
+                fill: var(--tg-func-bar-icon-hover-color);
+                transform: scale(1.1);
+                transition: transform 0.1s;
+            }
         }
-
         .deepl-plugin-q-tooltips__content {
             display: none;
         }
@@ -1768,6 +1801,15 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
     // 9.9.11-24616 默认壁纸
     .miracle-background {
         display: none;
+    }
+
+    // GPT回复
+    #gpt-response {
+        position: static !important;
+    }
+    // deepl翻译
+    #translation-result {
+        position: static !important;
     }
 }
 
