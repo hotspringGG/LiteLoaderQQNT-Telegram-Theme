@@ -835,6 +835,11 @@
             }
         }
 
+        // 表情reation菜单
+        .menu-stickers-panel {
+            background-color: var(--tg-menu-bg-color);
+        }
+
         // 消息向上跳转，含文字，暂不修改样式
         .chat-msg-area__tip--top-btn {
             &.theme-primary {
@@ -1690,24 +1695,36 @@
 
 // 右键菜单
 @mixin context-menu() {
-    // 回复和撤回按钮高亮
-    .q-context-menu-item:has(.q-icon path[d^='M6.00031'], .q-icon use[*|href$='quote_24']) {
-        color: var(--tg-context-menu-reply-font-color) !important;
-    }
-    .q-context-menu-item:has(.q-icon path[d^='M2.14649'], .q-icon use[*|href$='recall_24']) {
-        color: var(--tg-context-menu-withdraw-font-color) !important;
-    }
-    // 气泡菜单，改为和TG一样的圆角
-    .q-context-menu .menu-stickers-wrapper .menu-stickers {
-        border-radius: 9999px;
-        .menu-stickers-item {
-            border-radius: 9999px;
-            // hover效果
-            &:hover {
-                transform: scale(1.2);
-                transition: transform 0.2s;
-                background-color: transparent !important;
-                cursor: pointer;
+    .q-context-menu {
+        background-color: var(--tg-menu-bg-color) !important;
+        border-radius: 4px !important;
+        border: none !important;
+
+        // 回复和撤回按钮高亮
+        .q-context-menu-item {
+            &:has(.q-icon path[d^='M6.00031'], .q-icon use[*|href$='quote_24']) {
+                color: var(--tg-context-menu-reply-font-color) !important;
+            }
+            &:has(.q-icon path[d^='M2.14649'], .q-icon use[*|href$='recall_24']) {
+                color: var(--tg-context-menu-withdraw-font-color) !important;
+            }
+        }
+
+        // 气泡菜单，改为和TG一样的圆角
+        .menu-stickers-wrapper {
+            box-shadow: unset !important;
+            .menu-stickers {
+                border-radius: 9999px !important;
+                background-color: var(--tg-menu-bg-color) !important;
+                .menu-stickers-item {
+                    // hover效果
+                    &:hover {
+                        transform: scale(1.2);
+                        transition: transform 0.2s;
+                        background-color: transparent !important;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
@@ -1808,6 +1825,7 @@
         --tg-func-bar-icon-hover-color: #6a6a6a;
         --tg-window-control-area-button-color: #ababab;
         --tg-window-control-area-button-hover-color: #9a9a9a;
+        --tg-menu-bg-color: #ffffff;
     }
 }
 
@@ -1906,6 +1924,7 @@
         --tg-func-bar-icon-hover-color: #dcdcdc;
         --tg-window-control-area-button-color: #566572;
         --tg-window-control-area-button-hover-color: #e0e0e0;
+        --tg-menu-bg-color: #17212b;
     }
 }
 
