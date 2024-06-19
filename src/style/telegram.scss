@@ -1100,6 +1100,23 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         .message-content__wrapper {
             min-height: unset;
 
+            // 普通文件
+            .file-message--content .normal-file {
+                zoom: 1.05;
+                background-color: var(--tg-message-others-bg-color);
+                .file-icon {
+                    border-radius: 50%;
+                }
+                .file-info {
+                    color: var(--tg-message-others-font-color);
+                }
+            }
+
+            // 视频文件
+            .video-element {
+                zoom: var(--tg-message-others-pic-element-zoom);
+            }
+
             // 转发聊天记录
             .forward-msg {
                 background-color: var(--tg-message-others-forward-msg-bg-color) !important;
@@ -1229,8 +1246,9 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                 font-size: var(--tg-message-others-reply-content-font-size);
                 font-weight: 500;
 
-                // 回复内图片
-                .pic {
+                // 回复内图片、视频
+                .pic,
+                .video {
                     zoom: 1.5;
                 }
             }
@@ -1311,6 +1329,23 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         // 文字泡
         .message-content__wrapper {
             min-height: unset;
+
+            // 普通文件
+            .file-message--content .normal-file {
+                zoom: 1.05;
+                background-color: var(--tg-message-self-bg-color);
+                .file-icon {
+                    border-radius: 50%;
+                }
+                .file-info {
+                    color: var(--tg-message-self-font-color);
+                }
+            }
+
+            // 视频文件
+            .video-element {
+                zoom: var(--tg-message-self-pic-element-zoom);
+            }
 
             // 转发聊天记录
             .forward-msg {
@@ -1442,8 +1477,9 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                 font-size: var(--tg-message-self-reply-content-font-size);
                 font-weight: 500;
 
-                // 回复内图片
-                .pic {
+                // 回复内图片、视频
+                .pic,
+                .video {
                     zoom: 1.5;
                 }
             }
