@@ -471,6 +471,14 @@
             "description": "",
             "type": "color",
             "group": "其他设定"
+        },
+        "--tg-menu-bg-color": {
+            "value": "#ffffff",
+            "defaultValue": "#ffffff",
+            "title": "右键菜单、表情面板 背景色",
+            "description": "",
+            "type": "color",
+            "group": "其他设定"
         }
     },
     "dark": {
@@ -942,6 +950,14 @@
             "value": "#ffffff",
             "defaultValue": "#ffffff",
             "title": "VIP用户名 颜色",
+            "description": "",
+            "type": "color",
+            "group": "其他设定"
+        },
+        "--tg-menu-bg-color": {
+            "value": "#17212b",
+            "defaultValue": "#17212b",
+            "title": "右键菜单、表情面板 背景色",
             "description": "",
             "type": "color",
             "group": "其他设定"

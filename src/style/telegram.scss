@@ -894,6 +894,11 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                 margin-bottom: 20px;
             }
         }
+
+        // 表情列表
+        .sticker-panel {
+            background-color: var(--tg-menu-bg-color) !important;
+        }
     }
 }
 
@@ -958,6 +963,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         // 表情reation菜单
         .menu-stickers-panel {
             background-color: var(--tg-menu-bg-color);
+            border-radius: 6px;
         }
 
         // 消息向上跳转，含文字，暂不修改样式
@@ -1832,7 +1838,8 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
 
         // 气泡菜单，改为和TG一样的圆角
         .menu-stickers-wrapper {
-            box-shadow: unset !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            border-radius: 9999px !important;
             .menu-stickers {
                 border-radius: 9999px !important;
                 background-color: var(--tg-menu-bg-color) !important;
@@ -1932,6 +1939,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
 
         // 其他
         --tg-vip-name-color: #000000;
+        --tg-menu-bg-color: #ffffff;
 
         // 暂未纳入自定义设置的项
         --tg-panel-tip-bg-color: #ffffff;
@@ -1945,7 +1953,6 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         --tg-func-bar-icon-hover-color: #6a6a6a;
         --tg-window-control-area-button-color: #ababab;
         --tg-window-control-area-button-hover-color: #9a9a9a;
-        --tg-menu-bg-color: #ffffff;
     }
 }
 
@@ -2031,6 +2038,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
 
         // 其他
         --tg-vip-name-color: #ffffff;
+        --tg-menu-bg-color: #17212b;
 
         // 暂未纳入自定义设置的项
         --tg-panel-tip-bg-color: #1d2b3a;
@@ -2044,7 +2052,6 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         --tg-func-bar-icon-hover-color: #dcdcdc;
         --tg-window-control-area-button-color: #566572;
         --tg-window-control-area-button-hover-color: #e0e0e0;
-        --tg-menu-bg-color: #17212b;
     }
 }
 
