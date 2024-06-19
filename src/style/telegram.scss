@@ -1193,6 +1193,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             .message-content {
                 zoom: var(--tg-message-others-pic-element-zoom);
             }
+            .image-loading,
+            .image-error {
+                background-color: var(--tg-message-others-bg-color);
+            }
         }
 
         // 图文混合气泡, 图图混合气泡
@@ -1212,6 +1216,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                 padding: 0;
                 margin: 0 auto;
                 zoom: var(--tg-message-others-pic-element-zoom);
+                .image-loading,
+                .image-error {
+                    background-color: var(--tg-message-others-bg-color);
+                }
             }
 
             // 文字与气泡间距
@@ -1416,6 +1424,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             .message-content {
                 zoom: var(--tg-message-self-pic-element-zoom);
             }
+            .image-loading,
+            .image-error {
+                background-color: var(--tg-message-self-bg-color);
+            }
         }
 
         // 图文混合气泡, 图图混合气泡
@@ -1435,6 +1447,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                 padding: 0;
                 margin: 0 auto;
                 zoom: var(--tg-message-self-pic-element-zoom);
+                .image-loading,
+                .image-error {
+                    background-color: var(--tg-message-self-bg-color);
+                }
             }
 
             // 文字与气泡间距
