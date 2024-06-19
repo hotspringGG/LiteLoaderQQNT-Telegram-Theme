@@ -17,8 +17,8 @@
             "group": "壁纸设定"
         },
         "--tg-container-bg-color": {
-            "value": "#eeeeee",
-            "defaultValue": "#eeeeee",
+            "value": "#ffffff",
+            "defaultValue": "#ffffff",
             "title": "背景色",
             "description": "在没有壁纸时作为替代项",
             "type": "color",
@@ -947,5 +947,5 @@
             "group": "其他设定"
         }
     },
-    "version": "4.1.6"
+    "version": "4.4.0"
 }

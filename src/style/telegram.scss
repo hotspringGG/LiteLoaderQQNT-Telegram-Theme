@@ -104,8 +104,9 @@
     }
 }
 
-// 会话列表
+// 会话列表、联系人
 @mixin contact() {
+    // 会话列表
     .recent-contact {
         // 顶部bar
         .contact-top-bar {
@@ -362,64 +363,87 @@
 
             // 群助手列表
             .group-assistent-list {
-                background-color: var(--tg-contact-list-item-bg-color);
+                background-color: var(--tg-contact-top-bar-bg-color);
+                .recent-contact-list {
+                    background-color: var(--tg-contact-list-item-bg-color);
+                }
             }
         }
     }
 
-    // 联系人侧边栏
-    .contact-layout__left-area .contact {
-        background: var(--tg-contact-list-item-bg-color);
-
-        // 搜索框
-        .search-input {
-            border-radius: 9999px;
+    // 联系人左栏
+    .contact-layout__left-area {
+        .contact__top-area {
+            background: var(--tg-contact-top-bar-bg-color);
+            .search-input {
+                border-radius: 9999px;
+            }
+            .contact-adder-btn {
+                border-radius: 9999px;
+            }
         }
+        .contact-layout__content-area {
+            // 好友管理器、好友通知/群通知
+            .contact-management-entrance,
+            .contact-notify {
+                background-color: var(--tg-contact-top-bar-bg-color);
+            }
 
-        // 搜索框旁边的加号按钮
-        .contact-adder-btn {
-            border-radius: 9999px;
-        }
+            .tab {
+                background-color: var(--tg-contact-top-bar-bg-color);
+                .tab-header {
+                    // 好友/群聊
+                    background-color: var(--tg-contact-top-bar-bg-color);
+                }
+                .tab-content {
+                    // 折叠元素header
+                    .contact-list__collapse-item .q-collapse-item__header {
+                        background-color: var(--tg-contact-list-item-bg-color);
+                    }
 
-        // 标签栏
-        .tab-header {
-            background-color: var(--tg-contact-list-item-bg-color);
-        }
-
-        // 联系人列表 item
-        .q-collapse-item__header {
-            background-color: var(--tg-contact-list-item-bg-color);
-        }
-
-        // 联系人列表 item 选中状态
-        .list-item--selected .list-item__content {
-            background-color: var(--tg-contact-list-item-selected-bg-color);
+                    // 联系人列表 item
+                    .list-item {
+                        &:not(.list-item--selected) .list-item__content {
+                            background-color: var(--tg-contact-list-item-bg-color);
+                            &:hover {
+                                background-color: var(--tg-contact-list-item-hover-bg-color);
+                            }
+                        }
+                        &.list-item--selected .list-item__content {
+                            background-color: var(--tg-contact-list-item-selected-bg-color);
+                        }
+                    }
+                }
+            }
         }
     }
 
-    // 联系人右侧内容
+    // 联系人分割线
+    .contact-layout .q-divider {
+        display: none;
+    }
+
+    // 联系人右侧
     .contact-layout__right-area {
-        // 联系人详情
-        .profile {
-            background-color: var(--tg-contact-list-item-bg-color);
-        }
-        // 群通知与好友通知
+        // 好友通知、群通知
         .sys-notify {
-            background-color: var(--tg-contact-list-item-bg-color);
-            .viewport-list__inner {
-                background-color: var(--tg-contact-list-item-bg-color);
+            background-color: var(--tg-container-bg-color);
+            .sys-notify__content {
+                .viewport-list__inner {
+                    background-color: var(--tg-container-bg-color);
+                }
+                .sys-notify-card {
+                    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+                }
             }
         }
-    }
-
-    // QQ的联系人面板的分割线有三条，这里将全部分割线的颜色先更改成了联系人侧边栏的背景色
-    .contact-layout .resize-handler.ew div {
-        background-color: var(--tg-contact-list-item-bg-color);
-    }
-
-    // 再将第一条分割线取消显示，否则会有一条线覆盖在联系人侧边栏上
-    .contact-layout .resize-handler.ew div:first-child {
-        background-color: transparent !important;
+        // 联系人详情、群详情
+        .contact-profile {
+            .contact-profile__head,
+            .profile {
+                background-color: var(--tg-container-bg-color);
+            }
+        }
     }
 }
 
