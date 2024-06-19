@@ -453,7 +453,6 @@
     .aio {
         // 顶栏
         @include panel-header();
-        @include more-panel();
         // 主体
         .group-panel {
             // 聊天栏
@@ -506,7 +505,7 @@
     }
 }
 
-// 聊天栏header
+// 聊天栏header、header展开面板
 @mixin panel-header() {
     .panel-header {
         background-color: var(--tg-panel-header-bg-color) !important;
@@ -548,13 +547,157 @@
                 }
             }
         }
+
+        // 聊天栏 右侧“更多”面板
+        .more-panel .side-panel {
+            background-color: var(--tg-panel-header-bg-color);
+        }
     }
 }
 
-// 聊天栏 右侧“更多”面板 保持和header颜色一致
-@mixin more-panel() {
-    .more-panel .side-panel {
-        background-color: var(--tg-panel-header-bg-color);
+// 输入框工具 官方
+$func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
+@mixin func-bar-icon {
+    .chat-func-bar {
+        flex-direction: row;
+        flex-grow: 0;
+        flex-shrink: 0;
+        align-self: flex-end;
+        margin: 0 8px;
+        padding: 0;
+        z-index: 6;
+        width: $func-bar-icon-size;
+        max-width: fit-content;
+        transition: width 0.35s linear;
+        overflow: hidden;
+
+        // hover时展开全部按钮
+        &:has(.func-bar:hover) {
+            width: 100%;
+        }
+
+        // 工具和icon
+        .func-bar {
+            width: fit-content;
+            margin: 0;
+            padding: 0;
+            gap: 10px;
+            &:last-child {
+                // 补齐gap
+                padding-left: 10px;
+            }
+
+            .bar-icon {
+                width: fit-content;
+                height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+                gap: 10px;
+                cursor: pointer;
+
+                // 隐藏hover时提示
+                .q-tooltips__bottom {
+                    display: none;
+                }
+
+                .icon-item :is(.q-icon, svg) {
+                    width: $func-bar-icon-size !important;
+                    height: $func-bar-icon-size !important;
+                    color: var(--tg-func-bar-icon-color);
+                }
+
+                .arrow {
+                    width: fit-content;
+                    height: fit-content;
+                    margin-left: calc(var(--tg-chat-input-area-font-size) * -0.2);
+                    .q-icon {
+                        color: var(--tg-func-bar-icon-color);
+                        position: static;
+                        top: unset;
+                        width: calc(var(--tg-chat-input-area-font-size) * 1.3) !important;
+                        height: calc(var(--tg-chat-input-area-font-size) * 1.3) !important;
+                        svg {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                :is(.icon-item, .arrow):hover svg {
+                    transform: scale(1.1);
+                    transition: transform 0.1s;
+                    color: var(--tg-func-bar-icon-hover-color) !important;
+                }
+            }
+            // 截图和文件发送 占位div对gap的影响
+            > div:empty {
+                margin-left: calc(var(--tg-chat-input-area-font-size) * -0.3 - 10px);
+            }
+            // 其他插件按钮
+            @include external-icon();
+        }
+    }
+}
+
+// 输入框工具 其他插件
+@mixin external-icon {
+    // lite tools本地表情
+    .lite-tools-bar {
+        .lite-tools-q-icon,
+        .lite-tools-q-icon svg {
+            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+        }
+        .lite-tools-q-icon {
+            cursor: pointer;
+            color: var(--tg-func-bar-icon-color);
+            &:hover {
+                color: var(--tg-func-bar-icon-hover-color);
+            }
+        }
+    }
+
+    // GPT回复
+    .gpt-reply-bar-icon {
+        display: flex;
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+        .gpt-reply-q-icon,
+        svg {
+            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+        }
+        .gpt-reply-q-icon {
+            fill: var(--tg-func-bar-icon-color);
+        }
+        .gpt-reply-q-tooltips__content {
+            display: none;
+        }
+    }
+
+    // deepl翻译
+    .deepl-plugin-bar-icon {
+        display: flex;
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+        .deepl-plugin-q-icon,
+        svg {
+            width: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+            height: calc(var(--tg-chat-input-area-font-size) * 1.2) !important;
+            color: var(--tg-func-bar-icon-color);
+        }
+        .deepl-plugin-q-icon {
+            fill: var(--tg-func-bar-icon-color);
+        }
+
+        .deepl-plugin-q-tooltips__content {
+            display: none;
+        }
     }
 }
 
@@ -570,84 +713,8 @@
         background-color: var(--tg-chat-input-area-bg-color) !important;
         flex-direction: row;
 
-        // 聊天工具栏
-        .chat-func-bar {
-            flex-grow: 0;
-            flex-shrink: 0;
-            align-self: flex-end;
-            width: fit-content;
-            margin: 0 8px;
-            padding: 0;
-
-            flex-direction: row;
-            z-index: 6;
-
-            // 工具和icon
-            .func-bar {
-                margin: 0;
-
-                .bar-icon {
-                    width: calc(var(--tg-chat-input-area-font-size) * 2.2);
-                    height: calc(var(--tg-chat-input-area-font-size) * 3 + 5px);
-                    justify-content: center;
-                    margin: 0;
-                    padding: 0;
-                    cursor: pointer;
-
-                    // 隐藏hover时提示
-                    .q-tooltips__bottom {
-                        display: none;
-                    }
-
-                    .icon-item .q-icon,
-                    .icon-item .q-icon svg {
-                        width: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
-                        height: calc(var(--tg-chat-input-area-font-size) * 1.7) !important;
-                        color: var(--tg-func-bar-icon-color);
-                    }
-                    .arrow .q-icon {
-                        color: var(--tg-func-bar-icon-color);
-                        zoom: 1.7;
-                    }
-
-                    &:has(.arrow) {
-                        margin-right: 0.5em;
-                    }
-
-                    &:hover {
-                        .icon-item .q-icon,
-                        .icon-item .q-icon svg,
-                        .arrow .q-icon {
-                            color: var(--tg-func-bar-icon-hover-color);
-                        }
-                    }
-                }
-            }
-
-            // chat-func-bar被hover时，显示全部
-            &:hover {
-                .func-bar {
-                    display: flex;
-                    gap: 5px;
-                }
-            }
-
-            // chat-func-bar没有被hover时，只显示表情
-            &:not(:hover) {
-                .func-bar:nth-child(1) .bar-icon:not(:nth-child(1)) {
-                    display: none !important;
-                }
-
-                .func-bar:nth-child(2) {
-                    display: none !important;
-                }
-            }
-
-            // 永远显示表情按钮
-            .func-bar:nth-child(1) .bar-icon:nth-child(1) {
-                display: flex !important;
-            }
-        }
+        // 输入工具
+        @include func-bar-icon();
 
         // 输入框
         .msg-input {
@@ -658,40 +725,36 @@
             height: fit-content;
             max-height: 100%;
 
-            .qq-editor {
-                .ck-editor {
-                    // 输入框动态高度
+            .qq-editor .ck-editor {
+                // 输入框动态高度
+                height: fit-content;
+
+                .ck-editor__main .ck-content {
+                    // 文字输入区域，contenteditable div
+                    padding: var(--tg-chat-input-area-font-size) 6px var(--tg-chat-input-area-font-size) 0;
+                    margin: 0;
                     height: fit-content;
 
-                    .ck-editor__main {
-                        .ck-content {
-                            // 文字输入区域，contenteditable div
-                            padding: var(--tg-chat-input-area-font-size) 6px var(--tg-chat-input-area-font-size) 0;
-                            margin: 0;
-                            height: fit-content;
+                    // 文字样式
+                    font-size: var(--tg-chat-input-area-font-size) !important;
+                    line-height: calc(var(--tg-chat-input-area-font-size) + 5px) !important;
+                    color: var(--tg-chat-input-area-font-color) !important;
 
-                            // 文字样式
-                            font-size: var(--tg-chat-input-area-font-size) !important;
-                            line-height: calc(var(--tg-chat-input-area-font-size) + 5px) !important;
-                            color: var(--tg-chat-input-area-font-color) !important;
+                    // 文字输入框 placeholder
+                    .ck-placeholder:before {
+                        --qq-editor-placeholder: 'Write a message...';
+                        color: var(--tg-chat-input-area-placeholder-font-color);
+                    }
 
-                            // 文字输入框 placeholder
-                            .ck-placeholder:before {
-                                --qq-editor-placeholder: 'Write a message...';
-                                color: var(--tg-chat-input-area-placeholder-font-color);
-                            }
+                    // 编辑器内at用户
+                    msg-at {
+                        font-size: var(--tg-chat-input-area-font-size) !important;
+                        line-height: calc(var(--tg-chat-input-area-font-size) + 5px) !important;
+                    }
 
-                            // 编辑器内at用户
-                            msg-at {
-                                font-size: var(--tg-chat-input-area-font-size) !important;
-                                line-height: calc(var(--tg-chat-input-area-font-size) + 5px) !important;
-                            }
-
-                            // 编辑器内图片
-                            msg-img {
-                                zoom: var(--tg-chat-input-area-image-zoom);
-                            }
-                        }
+                    // 编辑器内图片
+                    msg-img {
+                        zoom: var(--tg-chat-input-area-image-zoom);
                     }
                 }
             }
@@ -762,7 +825,7 @@
         }
 
         // 转发选项菜单（逐条转发、合并转发等），只在转发时显示
-        ul.forward-ops {
+        .forward-ops {
             min-height: 100px;
             max-width: unset;
 
@@ -1695,20 +1758,11 @@
         }
     }
 
-    // 本地表情弹出窗
+    // lite tools本地表情弹出窗
     .lite-tools-local-emoticons-main,
     .commonly-emoticons-panel {
         right: unset !important;
         left: 0 !important;
-    }
-
-    // 本地表情按钮
-    .lite-tools-q-icon {
-        cursor: pointer;
-        color: var(--tg-func-bar-icon-color);
-        &:hover {
-            color: var(--tg-func-bar-icon-hover-color);
-        }
     }
 
     // 9.9.11-24616 默认壁纸
