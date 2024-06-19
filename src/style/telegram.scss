@@ -1041,6 +1041,34 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
     }
 }
 
+// 消息reaction
+@mixin message-reaction {
+    .reaction-item {
+        .reaction-item-bg {
+            border-radius: 100px;
+            background-color: var(--tg-message-reaction-bg-color);
+            opacity: 1;
+            &.reaction-item-bg--clicked {
+                background-color: var(--tg-message-reaction-clicked-bg-color);
+            }
+        }
+        .reaction-item-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--tg-message-reaction-font-color);
+        }
+        &.reaction-item--clicked .reaction-item-text {
+            color: var(--tg-message-reaction-clicked-font-color);
+        }
+    }
+    .reaction-content:empty {
+        display: none;
+    }
+    .more-reaction-item {
+        display: none;
+    }
+}
+
 // 他人消息
 @mixin message-others() {
     .message-container:not(.message-container--self) {
@@ -1136,14 +1164,6 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         // 状态、下载按钮
         .content-status {
             zoom: 1.5;
-        }
-
-        // reaction
-        .reaction-item-bg--clicked {
-            opacity: 0.75;
-        }
-        .reaction-content:empty {
-            display: none;
         }
     }
     // 消息container
@@ -1366,14 +1386,6 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         // 状态、下载按钮
         .content-status {
             zoom: 1.5;
-        }
-
-        // reaction
-        .reaction-item-bg--clicked {
-            opacity: 0.75;
-        }
-        .reaction-content:empty {
-            display: none;
         }
     }
 
@@ -1989,6 +2001,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         --tg-func-bar-icon-hover-color: #6a6a6a;
         --tg-window-control-area-button-color: #ababab;
         --tg-window-control-area-button-hover-color: #9a9a9a;
+        --tg-message-reaction-bg-color: #0000002f;
+        --tg-message-reaction-font-color: #ffffff;
+        --tg-message-reaction-clicked-bg-color: #ffffff;
+        --tg-message-reaction-clicked-font-color: #168ad5;
     }
 }
 
@@ -2088,6 +2104,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         --tg-func-bar-icon-hover-color: #dcdcdc;
         --tg-window-control-area-button-color: #566572;
         --tg-window-control-area-button-hover-color: #e0e0e0;
+        --tg-message-reaction-bg-color: #1c3345;
+        --tg-message-reaction-font-color: #ffffff;
+        --tg-message-reaction-clicked-bg-color: #3f96d0;
+        --tg-message-reaction-clicked-font-color: #ffffff;
     }
 }
 
@@ -2102,6 +2122,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         @include message-others();
         @include message-self();
         @include message-concat();
+        @include message-reaction();
         @include patch();
     }
     @include context-menu();
