@@ -1620,33 +1620,104 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             }
         }
     }
-    // 群聊
-    .ml-list:has(.user-name) {
-        // 消息距离
-        .ml-item .message,
-        .ml-item .message:last-child {
-            padding-bottom: 0;
+    // // 群聊
+    // .ml-list:has(.user-name) {
+    //     // 消息距离
+    //     .ml-item .message,
+    //     .ml-item .message:last-child {
+    //         padding-bottom: 0;
+    //     }
+    //     // 分隔他人消息和自己消息间隔
+    //     .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
+    //     .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
+    //         .message {
+    //             margin-bottom: 20px;
+    //         }
+    //     }
+    //     // 匹配自己的连串消息，调节气泡（第一条除外）
+    //     .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
+    //         .message:not(:has(.message__timestamp)) {
+    //             margin-top: 3px;
+    //             .msg-content-container {
+    //                 border-top-right-radius: 8px !important;
+    //             }
+    //         }
+    //     }
+    //     .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
+    //         .message:not(:has(.message__timestamp)) {
+    //             margin-top: 20px;
+    //         }
+    //     }
+    // }
+
+    // 群聊消息合并样式，自定义属性在.message上
+    // 自己消息
+    .self-single {
+        padding-bottom: 0;
+        margin-bottom: 20px !important;
+    }
+    .self-head {
+        padding-bottom: 0;
+    }
+    .self-body {
+        margin-top: 3px !important;
+        padding-bottom: 0;
+        .msg-content-container {
+            border-top-right-radius: 8px !important;
         }
-        // 分隔他人消息和自己消息间隔
-        .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
-        .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
-            .message {
-                margin-bottom: 20px;
-            }
+    }
+    .self-tail {
+        margin-top: 3px !important;
+        margin-bottom: 20px !important;
+        padding-bottom: 0;
+        .msg-content-container {
+            border-top-right-radius: 8px !important;
         }
-        // 匹配自己的连串消息，调节气泡（第一条除外）
-        .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
-            .message:not(:has(.message__timestamp)) {
-                margin-top: 3px;
-                .msg-content-container {
-                    border-top-right-radius: 8px !important;
-                }
-            }
+    }
+
+    // 他人消息
+    .others-single {
+        padding-bottom: 0;
+        margin-bottom: 20px !important;
+        .avatar-span {
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
         }
-        .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
-            .message:not(:has(.message__timestamp)) {
-                margin-top: 20px;
-            }
+    }
+    .others-head {
+        padding-bottom: 0;
+        .avatar-span {
+            display: none;
+        }
+    }
+    .others-body {
+        margin-top: 3px !important;
+        padding-bottom: 0;
+        .msg-content-container {
+            border-top-left-radius: 8px !important;
+        }
+        .user-name,
+        .avatar-span {
+            display: none;
+        }
+    }
+    .others-tail {
+        margin-top: 3px !important;
+        margin-bottom: 20px !important;
+        padding-bottom: 0;
+        .msg-content-container {
+            border-top-left-radius: 8px !important;
+        }
+        .user-name {
+            display: none;
+        }
+        .avatar-span {
+            display: flex;
+            align-items: flex-end;
+            position: absolute;
+            height: 100%;
+            bottom: 0;
         }
     }
 }
