@@ -1590,6 +1590,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
 @mixin message-concat() {
     // 私聊
     .ml-list:not(:has(.user-name)) {
+        // 底部边距
+        .ml-item:first-child {
+            margin-bottom: 20px;
+        }
         // 去除消息距离
         .ml-item .message,
         .ml-item .message:last-child {
