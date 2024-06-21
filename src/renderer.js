@@ -245,15 +245,15 @@ const concatMsg = () => {
             if (!infoCache.has(id)) {
                 // 用户名、是否为自己消息、是否含时间戳、是否为灰色消息(撤回or管理操作)
                 let name, self, time
-                const gray = msg.querySelector('.gray-tip-message') ? true : false
+                const gray = !!msg.querySelector('.gray-tip-message')
                 if (gray) {
                     name = null
                     self = false
                     time = false
                 } else {
                     name = msg.querySelector('.user-name .text-ellipsis')?.innerHTML
-                    self = msg.querySelector('.message-container--self') ? true : false
-                    time = msg.querySelector('.message__timestamp') ? true : false
+                    self = !!msg.querySelector('.message-container--self')
+                    time = !!msg.querySelector('.message__timestamp')
                 }
                 nameArr[index] = name
                 selfArr[index] = self
@@ -295,7 +295,7 @@ const concatMsg = () => {
         sepArr[msgCnt - 1] = true // 最后节点
 
         let start = 0
-        let end = 0
+        let end
         for (end = 0; end < sepArr.length; end++) {
             if (sepArr[end]) {
                 // 连续消息区间
