@@ -190,129 +190,183 @@ const adjustContactWidth = () => {
     }
 }
 
+// key为num str的Cache
+class LimitedMap {
+    maxSize = 0
+    m = new Map()
+    constructor(maxSize) {
+        this.maxSize = maxSize
+    }
+    get(k) {
+        return this.m.get(k)
+    }
+    set(k, v) {
+        this.m.set(k, v)
+        if (this.m.size > this.maxSize) {
+            this.free()
+        }
+    }
+    has(k) {
+        return this.m.has(k)
+    }
+    async free() {
+        try {
+            const keys = Array.from(this.m.keys())
+                .sort((a, b) => parseInt(a) - parseInt(b))
+                .slice(0, Math.floor(this.maxSize / 4))
+            keys.forEach((k) => this.m.delete(k))
+        } catch {
+            // err
+        }
+    }
+}
+
 // 仿Telegram，拼接消息，头像浮动
 const concatMsg = () => {
-    try {
-        const msgList = document.querySelector('#ml-root .ml-list')
-        if (!msgList) {
-            return
-        }
+    const msgList = document.querySelector('#ml-root .ml-list')
+    if (!msgList) {
+        return
+    }
+    const infoCache = new LimitedMap(20000)
 
-        // 记录用户名和断点
-        let nameArr, stopArr
+    const work = () => {
+        let msgs = msgList.querySelectorAll('.ml-item')
 
-        // 比较消息，只处理对方消息，自己消息由纯CSS解决
-        const cmp = (lower, upper, lowerIndex, upperIndex) => {
-            try {
-                // 自己的消息, 或已撤回
-                if (
-                    lower.querySelector('.message-container--self, .gray-tip-message') ||
-                    upper.querySelector('.message-container--self, .gray-tip-message')
-                ) {
-                    return
-                }
-                // lower含时间戳
-                if (lower.querySelector('.message__timestamp')) {
-                    stopArr[lowerIndex + 1] = true
-                    nameArr[lowerIndex] = lower.querySelector('.avatar-span')?.getAttribute('aria-label')
-                    return
-                }
-                // upper含时间戳
-                if (upper.querySelector('.message__timestamp')) {
-                    stopArr[upperIndex + 1] = true
-                    // nameArr[upperIndex] = upper.querySelector('.avatar-span')?.getAttribute('aria-label')
-                }
-                const msgLower = lower.querySelector('.message')
-                const bubbleLower = lower.querySelector('.msg-content-container')
-                const usernameNodeLower = lower.querySelector('.user-name')
-                const avatarUpper = upper.querySelector('.avatar-span')
-                const usernameUpper = avatarUpper.getAttribute('aria-label')
-                const usernameLower = lower.querySelector('.avatar-span').getAttribute('aria-label')
-                if (usernameUpper && usernameLower === usernameUpper) {
-                    if (msgLower) {
-                        msgLower.style.marginTop = '3px'
-                    }
-                    if (bubbleLower) {
-                        bubbleLower.style.borderTopLeftRadius = '8px'
-                    }
-                    if (avatarUpper) {
-                        avatarUpper.style.display = 'none'
-                    }
-                    if (usernameNodeLower) {
-                        usernameNodeLower.style.display = 'none'
-                    }
-                }
+        const msgCnt = msgs.length
+        const nameArr = new Array(msgCnt)
+        const selfArr = new Array(msgCnt)
+        const grayArr = new Array(msgCnt)
+        const timeArr = new Array(msgCnt)
 
-                if (usernameLower) {
-                    nameArr[lowerIndex] = usernameLower
+        // 1. 获取、补齐信息
+        const getInfo = (index) => {
+            const msg = msgs[index]
+            const id = msg.id
+            if (!infoCache.has(id)) {
+                // 用户名、是否为自己消息、是否含时间戳、是否为灰色消息(撤回or管理操作)
+                let name, self, time
+                const gray = msg.querySelector('.gray-tip-message') ? true : false
+                if (gray) {
+                    name = null
+                    self = false
+                    time = false
+                } else {
+                    name = msg.querySelector('.user-name .text-ellipsis')?.innerHTML
+                    self = msg.querySelector('.message-container--self') ? true : false
+                    time = msg.querySelector('.message__timestamp') ? true : false
                 }
-                if (usernameUpper) {
-                    nameArr[upperIndex] = usernameUpper
-                }
-            } catch {
-                // error(err)
-            }
-        }
-        // 总流程
-        const work = () => {
-            try {
-                const msgs = msgList.querySelectorAll('.ml-item')
-                nameArr = new Array(msgs.length + 1)
-                stopArr = new Array(msgs.length + 1)
-
-                // 消息拼接
-                for (let i = msgs.length - 1; i >= 1; i--) {
-                    cmp(msgs[i - 1], msgs[i], i - 1, i)
-                }
-                // 头像浮动，双指针找连续区间
-                let start = 0
-                let avatarMap = new Map()
-                for (let end = 1; end <= msgs.length; end++) {
-                    if (end === nameArr.length || nameArr[end] !== nameArr[start] || stopArr[end] === true) {
-                        if (nameArr[start] !== undefined) {
-                            // log(start, end, nameArr.slice(start, end))
-                            // 合并区间 [start, end)
-                            const avatar = msgs[start].querySelector('.avatar-span')
-                            if (avatar) {
-                                if (end - start > 1) {
-                                    let sumHeight = -3
-                                    for (let i = start; i < end; i++) {
-                                        sumHeight += msgs[i].querySelector('.message-container')?.offsetHeight + 3
-                                    }
-                                    avatarMap.set(avatar, `${sumHeight}px`)
-                                } else {
-                                    avatarMap.set(avatar, '100%')
-                                }
-                            }
-                        }
-                        start = end
-                    }
-                }
-                avatarMap.forEach((sumHeight, avatar) => {
-                    avatar.style.height = sumHeight
-                    avatar.style.display = 'flex'
-                    avatar.style.alignItems = 'flex-end'
-                    avatar.style.bottom = '0'
-                    avatar.style.position = 'absolute'
+                nameArr[index] = name
+                selfArr[index] = self
+                grayArr[index] = gray
+                timeArr[index] = time
+                infoCache.set(id, {
+                    name: name,
+                    self: self,
+                    gray: gray,
+                    time: time,
                 })
-            } catch {
-                // error(err)
+            } else {
+                const info = infoCache.get(id)
+                nameArr[index] = info.name
+                selfArr[index] = info.self
+                grayArr[index] = info.gray
+                timeArr[index] = info.time
+            }
+        }
+        for (let i = 0; i < msgCnt; i++) {
+            getInfo(i)
+        }
+
+        // 2. 计算消息断点
+        const typeArr = new Array(msgCnt)
+        const stopArr = new Array(2 * msgCnt + 1)
+        for (let i = 0; i < msgCnt - 1; i++) {
+            // 出现时间戳 / 出现gray消息 / 位置变化 / 用户名变化
+            if (timeArr[i]) {
+                stopArr[2 * i + 1] = true
+            }
+            if (grayArr[i] && i > 0) {
+                stopArr[2 * i - 1] = true
+            }
+            if (nameArr[i] !== nameArr[i + 1] || selfArr[i] !== selfArr[i + 1]) {
+                stopArr[2 * i + 1] = true
+            }
+        }
+        stopArr[2 * msgCnt + 1] = true // 最后节点
+
+        let start = 0
+        let end = 1
+        for (end = 1; end < stopArr.length; end += 2) {
+            if (stopArr[end]) {
+                // 消息区间 [start/2, (end-1)/2]
+                const head = (end - 1) / 2
+                const tail = start / 2
+                if (head === tail) {
+                    typeArr[head] = selfArr[head] ? 'self-single' : 'others-single'
+                } else {
+                    typeArr[head] = selfArr[head] ? 'self-head' : 'others-head'
+                    typeArr[tail] = selfArr[tail] ? 'self-tail' : 'others-tail'
+                    for (let body = tail + 1; body <= head - 1; body++) {
+                        typeArr[body] = selfArr[body] ? 'self-body' : 'others-body'
+                    }
+                }
+                start = end + 1
             }
         }
 
-        const observer = new MutationObserver(async (mutationList) => {
-            for (let i = 0; i < mutationList.length; i++) {
-                if (mutationList[i].addedNodes.length > 0) {
-                    // 不处理私聊，纯CSS解决
-                    msgList.querySelector('.user-name') && requestAnimationFrame(work)
-                    return
+        // 3. 高度计算
+        const heightArr = new Array(msgCnt)
+        let sumIndex = 0
+        let sumHeight = 0
+        for (let i = 0; i < msgCnt; i++) {
+            if (typeArr[i] === 'others-tail') {
+                sumHeight = 0
+                sumIndex = i
+            }
+            if (['others-head', 'others-body', 'others-tail'].includes(typeArr[i])) {
+                const msg = msgs[i].querySelector('.message-content__wrapper')
+                if (msg) {
+                    sumHeight += msg.offsetHeight + 3
+                }
+            }
+            if (typeArr[i] === 'others-head') {
+                heightArr[sumIndex] = sumHeight
+            }
+        }
+
+        // 4. style统一修改，给.ml-item赋予属性，修改头像浮动height
+        requestAnimationFrame(() => {
+            for (let i = 0; i < msgCnt; i++) {
+                if (typeArr[i]) {
+                    msgs[i].setAttribute('class', `ml-item ${typeArr[i]}`)
+                }
+                if (heightArr[i]) {
+                    const avatar = msgs[i].querySelector('.avatar-span')
+                    if (avatar) {
+                        avatar.style.height = `${heightArr[i] + 20}px`
+                    }
                 }
             }
         })
-        observer.observe(msgList, { childList: true })
-    } catch (err) {
-        error(err)
     }
+
+    const observer = new MutationObserver(async (mutationList) => {
+        // 不处理私聊，纯CSS解决
+        if (!msgList.querySelector('.user-name')) {
+            return
+        }
+        for (let i = 0; i < mutationList.length; i++) {
+            if (mutationList[i].addedNodes.length > 0) {
+                try {
+                    work()
+                } catch {
+                    // err
+                }
+                return
+            }
+        }
+    })
+    observer.observe(msgList, { childList: true })
 }
 
 // BroadcastChannel，renderer不同页面间通信，用于实时同步设置

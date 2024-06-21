@@ -931,6 +931,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                     // 每行聊天项（虚拟滚动列表，消息排列顺序与dom结构不同）
                     .ml-item {
                         .message {
+                            padding-bottom: 0;
                             // 聊天时间，聊天提示（撤回消息、禁言等）
                             .message__timestamp,
                             .gray-tip-message {
@@ -1593,7 +1594,6 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         // 去除消息距离
         .ml-item .message,
         .ml-item .message:last-child {
-            padding-bottom: 0;
             margin-top: 3px;
         }
         // 分隔他人消息和自己消息间隔
@@ -1650,34 +1650,31 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
     //     }
     // }
 
-    // 群聊消息合并样式，自定义属性在.message上
+    // 群聊消息合并样式，自定义属性在.ml-item上
     // 自己消息
-    .self-single {
-        padding-bottom: 0;
+    .self-single .message {
         margin-bottom: 20px !important;
     }
-    .self-head {
-        padding-bottom: 0;
+    .self-head .message {
     }
-    .self-body {
+    .self-body .message {
         margin-top: 3px !important;
-        padding-bottom: 0;
+
         .msg-content-container {
             border-top-right-radius: 8px !important;
         }
     }
-    .self-tail {
+    .self-tail .message {
         margin-top: 3px !important;
         margin-bottom: 20px !important;
-        padding-bottom: 0;
+
         .msg-content-container {
             border-top-right-radius: 8px !important;
         }
     }
 
     // 他人消息
-    .others-single {
-        padding-bottom: 0;
+    .others-single .message {
         margin-bottom: 20px !important;
         .avatar-span {
             display: flex;
@@ -1685,15 +1682,13 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             height: 100%;
         }
     }
-    .others-head {
-        padding-bottom: 0;
+    .others-head .message {
         .avatar-span {
             display: none;
         }
     }
-    .others-body {
+    .others-body .message {
         margin-top: 3px !important;
-        padding-bottom: 0;
         .msg-content-container {
             border-top-left-radius: 8px !important;
         }
@@ -1702,10 +1697,9 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             display: none;
         }
     }
-    .others-tail {
+    .others-tail .message {
         margin-top: 3px !important;
         margin-bottom: 20px !important;
-        padding-bottom: 0;
         .msg-content-container {
             border-top-left-radius: 8px !important;
         }
