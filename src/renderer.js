@@ -279,36 +279,36 @@ const concatMsg = () => {
 
         // 2. 计算消息断点
         const typeArr = new Array(msgCnt)
-        const stopArr = new Array(2 * msgCnt + 1)
+        const sepArr = new Array(msgCnt)
         for (let i = 0; i < msgCnt - 1; i++) {
             // 出现时间戳 / 出现gray消息 / 位置变化 / 用户名变化
             if (timeArr[i]) {
-                stopArr[2 * i + 1] = true
+                sepArr[i] = true
             }
             if (grayArr[i] && i > 0) {
-                stopArr[2 * i - 1] = true
+                sepArr[i - 1] = true
             }
             if (nameArr[i] !== nameArr[i + 1] || selfArr[i] !== selfArr[i + 1]) {
-                stopArr[2 * i + 1] = true
+                sepArr[i] = true
             }
         }
-        stopArr[2 * msgCnt + 1] = true // 最后节点
+        sepArr[msgCnt - 1] = true // 最后节点
 
         let start = 0
-        let end = 1
-        for (end = 1; end < stopArr.length; end += 2) {
-            if (stopArr[end]) {
-                // 消息区间 [start/2, (end-1)/2]
-                const head = (end - 1) / 2
-                const tail = start / 2
+        let end = 0
+        for (end = 0; end < sepArr.length; end++) {
+            if (sepArr[end]) {
+                // 连续消息区间
+                const head = end
+                const tail = start
                 if (head === tail) {
                     typeArr[head] = selfArr[head] ? 'self-single' : 'others-single'
                 } else {
-                    typeArr[head] = selfArr[head] ? 'self-head' : 'others-head'
                     typeArr[tail] = selfArr[tail] ? 'self-tail' : 'others-tail'
-                    for (let body = tail + 1; body <= head - 1; body++) {
+                    for (let body = tail + 1; body < head; body++) {
                         typeArr[body] = selfArr[body] ? 'self-body' : 'others-body'
                     }
+                    typeArr[head] = selfArr[head] ? 'self-head' : 'others-head'
                 }
                 start = end + 1
             }
@@ -334,7 +334,7 @@ const concatMsg = () => {
             }
         }
 
-        // 4. style统一修改，给.ml-item赋予属性，修改头像浮动height
+        // 4. rAF统一修改style，给.ml-item赋予属性，修改头像浮动height
         requestAnimationFrame(() => {
             for (let i = 0; i < msgCnt; i++) {
                 if (typeArr[i]) {
@@ -360,7 +360,7 @@ const concatMsg = () => {
                 try {
                     work()
                 } catch {
-                    // err
+                    // error(err)
                 }
                 return
             }

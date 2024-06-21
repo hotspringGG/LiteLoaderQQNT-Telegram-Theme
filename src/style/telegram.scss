@@ -951,11 +951,10 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
                                 }
                             }
                         }
-
-                        // 最后一条消息与editor的边距
-                        &:first-child {
-                            margin-bottom: 12px;
-                        }
+                        // // 最后一条消息与editor的边距
+                        // &:first-child {
+                        //     margin-bottom: 20px;
+                        // }
                     }
                 }
             }
@@ -1620,43 +1619,14 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
             }
         }
     }
-    // // 群聊
-    // .ml-list:has(.user-name) {
-    //     // 消息距离
-    //     .ml-item .message,
-    //     .ml-item .message:last-child {
-    //         padding-bottom: 0;
-    //     }
-    //     // 分隔他人消息和自己消息间隔
-    //     .ml-item:has(.message-container--self) + .ml-item:not(:has(.message-container--self)),
-    //     .ml-item:not(:has(.message-container--self)) + .ml-item:has(.message-container--self) {
-    //         .message {
-    //             margin-bottom: 20px;
-    //         }
-    //     }
-    //     // 匹配自己的连串消息，调节气泡（第一条除外）
-    //     .ml-item:has(.message-container--self):has(+ .ml-item .message-container--self) {
-    //         .message:not(:has(.message__timestamp)) {
-    //             margin-top: 3px;
-    //             .msg-content-container {
-    //                 border-top-right-radius: 8px !important;
-    //             }
-    //         }
-    //     }
-    //     .ml-item:not(:has(.message-container--self)):not(:has(+ .ml-item .message-container--self)) {
-    //         .message:not(:has(.message__timestamp)) {
-    //             margin-top: 20px;
-    //         }
-    //     }
-    // }
 
-    // 群聊消息合并样式，自定义属性在.ml-item上
+    // 群聊消息合并样式
     // 自己消息
     .self-single .message {
         margin-bottom: 20px !important;
     }
-    .self-head .message {
-    }
+    // .self-head .message {
+    // }
     .self-body .message {
         margin-top: 3px !important;
 
