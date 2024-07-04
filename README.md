@@ -24,7 +24,7 @@
 
 1.  从 [Release](https://github.com/festoney8/LiteLoaderQQNT-Telegram-Theme/releases) 下载 zip 压缩包（或直接 clone 项目）
 
-2.  将主题文件解压到 LiteLoaderQQNT 数据目录的 `plugins` 文件夹下
+2.  将主题文件解压到 [LiteLoaderQQNT 数据目录](https://liteloaderqqnt.github.io/guide/plugins.html) 的 `plugins` 文件夹下
 
 3.  重启 QQ
 
@@ -55,6 +55,11 @@
 ### 设置页
 
 ![setting](screenshot/screenshot-setting.png)
+
+## 开发
+
+-   本项目无需构建，package 管理仅用于代码 lint 和 format
+-   css 文件由 scss 文件直接生成，可使用 [sass 命令](https://sass-lang.com/install/) 或 [Vscode 插件](https://code.visualstudio.com/docs/languages/css)
 
 ## 其他
 
