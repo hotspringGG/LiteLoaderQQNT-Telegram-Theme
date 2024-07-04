@@ -76,6 +76,7 @@
                             .more-item {
                                 .q-icon {
                                     // 未选中时，普通icon，只有线条
+                                    zoom: var(--tg-sidebar-nav-item-zoom);
                                     color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                 }
                             }
@@ -92,6 +93,7 @@
                                 .icon-item {
                                     .q-icon {
                                         // 未选中时，普通icon，只有线条
+                                        zoom: var(--tg-sidebar-nav-item-zoom);
                                         color: var(--tg-sidebar-nav-item-unselected-icon-color);
                                     }
                                 }
