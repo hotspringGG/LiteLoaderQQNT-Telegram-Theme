@@ -568,7 +568,7 @@ $func-bar-icon-size: calc(var(--tg-chat-input-area-font-size) * 1.7);
         margin: 0;
         padding: 0 8px;
         z-index: 6;
-        width: calc($func-bar-icon-size + 16px);
+        width: calc($func-bar-icon-size * 1.5);
         max-width: fit-content;
         transition: width 0.35s ease;
         overflow: hidden;
